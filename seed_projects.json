@@ -1,0 +1,1938 @@
+[
+  {
+    "slug": "gucci",
+    "title": "Gucci, The Regeneration Suite",
+    "h1_lines": [
+      "A Restorative",
+      "&amp; Immersive",
+      "Experience"
+    ],
+    "role": "Lead Designer",
+    "description": "To celebrate 100 years of Gucci, we partnered with The Savoy to create an immersive experience that honours regeneration.",
+    "team_prefix": "Done with",
+    "team_name": "AKQA Amsterdam",
+    "home_tex": "/static/media/d/work/gucci/home",
+    "hero_tex": "/static/media/d/work/gucci/hero",
+    "next_slug": "samsung",
+    "next_title": "Samsung Galaxy Watch 4",
+    "order_index": 1,
+    "is_visible": 1,
+    "sections": [
+      {
+        "large": {
+          "class": "",
+          "aspect": "1800/1010",
+          "bg": "#2c1f14",
+          "src": "/static/media/d/work/gucci/section/large/G0.jpg?1",
+          "alt": "The Regeneration Suite introduction"
+        },
+        "small": {
+          "class": "",
+          "aspect": "120/67",
+          "bg": "#2c1f14",
+          "src": "/static/media/d/work/gucci/section/small/G0.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1010",
+          "bg": "#3d2311",
+          "src": "/static/media/d/work/gucci/section/large/G1.jpg?1",
+          "alt": "Woman at the Savoy in Gucci"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#3d2311",
+          "src": "/static/media/d/work/gucci/section/small/G1.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#fcfdfc",
+          "src": "/static/media/d/work/gucci/section/large/G2.jpg?1",
+          "alt": "Mind Body Soul illustrations"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#fcfdfc",
+          "src": "/static/media/d/work/gucci/section/small/G2.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1010",
+          "bg": "#543327",
+          "src": "/static/media/d/work/gucci/section/large/G3.jpg?1",
+          "alt": "Savoy suite by Gucci"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#543327",
+          "src": "/static/media/d/work/gucci/section/small/G3.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#f2f3f1",
+          "src": "/static/media/d/work/gucci/section/large/G4.jpg?1",
+          "alt": "Savoy hotel illustration"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#f2f3f1",
+          "src": "/static/media/d/work/gucci/section/small/G4.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#77714e",
+          "src": "/static/media/d/work/gucci/section/large/G5.jpg?1",
+          "alt": "Nature inside a Gucci hotel suite"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#77714e",
+          "src": "/static/media/d/work/gucci/section/small/G5.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1010",
+          "bg": "#81959d",
+          "src": "/static/media/d/work/gucci/section/large/G6.jpg?1",
+          "alt": "iPad screen for restorative tea ceremony"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#81959d",
+          "src": "/static/media/d/work/gucci/section/small/G6.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#9ab0a9",
+          "src": "/static/media/d/work/gucci/section/large/G7.jpg?1",
+          "alt": "Gucci scarf illustration"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#9ab0a9",
+          "src": "/static/media/d/work/gucci/section/small/G7.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#5b4025",
+          "src": "/static/media/d/work/gucci/section/large/G8.jpg?1",
+          "alt": "Woman having tea in Gucci hotel"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#5b4025",
+          "src": "/static/media/d/work/gucci/section/small/G8.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1010",
+          "bg": "#fbfbfa",
+          "src": "/static/media/d/work/gucci/section/large/G9.jpg?1",
+          "alt": "Flower eye illustration"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#fbfbfa",
+          "src": "/static/media/d/work/gucci/section/small/G9.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#90826d",
+          "src": "/static/media/d/work/gucci/section/large/G10.jpg?1",
+          "alt": "Savoy Gucci suite bedroom"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#90826d",
+          "src": "/static/media/d/work/gucci/section/small/G10.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#312d23",
+          "src": "/static/media/d/work/gucci/section/large/G11.jpg?1",
+          "alt": "TV screen for Gucci campaign"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#312d23",
+          "src": "/static/media/d/work/gucci/section/small/G11.jpg?1"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "samsung",
+    "title": "Samsung, Simplicity & Tactility",
+    "h1_lines": [
+      "An All-New",
+      "Experience",
+      "On Your Wrist"
+    ],
+    "role": "Part of a 3 creatives team",
+    "description": "Inspiring the experience for Samsung\u2019s new smartwatch. The concept is named Spacial, striking the balance between simple and tactile.",
+    "team_prefix": "Done with",
+    "team_name": "AKQA Amsterdam",
+    "home_tex": "/static/media/d/work/samsung/home",
+    "hero_tex": "/static/media/d/work/samsung/hero",
+    "next_slug": "rituals",
+    "next_title": "The Ritual of Sakura",
+    "order_index": 2,
+    "is_visible": 1,
+    "sections": [
+      {
+        "large": {
+          "class": "",
+          "aspect": "1800/1010",
+          "bg": "#090a0a",
+          "src": "/static/media/d/work/samsung/section/large/SG0.jpg?1",
+          "alt": "Samsung watch UI grid"
+        },
+        "small": {
+          "class": "",
+          "aspect": "120/67",
+          "bg": "#090a0a",
+          "src": "/static/media/d/work/samsung/section/small/SG0.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1010",
+          "bg": "#142030",
+          "src": "/static/media/d/work/samsung/section/large/SG1.jpg?1",
+          "alt": "Onboarding for Samsung Watch 4 OOBE"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#142030",
+          "src": "/static/media/d/work/samsung/section/small/SG1.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#7d8287",
+          "src": "/static/media/d/work/samsung/section/large/SG2.jpg?1",
+          "alt": "Woman playing Frisbee wearing Samsung Watch"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#7d8287",
+          "src": "/static/media/d/work/samsung/section/small/SG2.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1008",
+          "bg": "#0c0d0e",
+          "src": "/static/media/d/work/samsung/section/large/SG3.jpg?1",
+          "alt": "Key UI screen"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#0c0d0e",
+          "src": "/static/media/d/work/samsung/section/small/SG3.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#685e50",
+          "src": "/static/media/d/work/samsung/section/large/SG4.jpg?1",
+          "alt": "Man in cafe wearing Samsung watch classic"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#685e50",
+          "src": "/static/media/d/work/samsung/section/small/SG4.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#090909",
+          "src": "/static/media/d/work/samsung/section/large/SG5.jpg?1",
+          "alt": "2 watches floating"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#090909",
+          "src": "/static/media/d/work/samsung/section/small/SG5.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1010",
+          "bg": "#857c7a",
+          "src": "/static/media/d/work/samsung/section/large/SG6.jpg?1",
+          "alt": "People running with Samsung watch"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#857c7a",
+          "src": "/static/media/d/work/samsung/section/small/SG6.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#090f0c",
+          "src": "/static/media/d/work/samsung/section/large/SG7.jpg?1",
+          "alt": "Running widget of Samsung Watch"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#090f0c",
+          "src": "/static/media/d/work/samsung/section/small/SG7.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#0d0c0c",
+          "src": "/static/media/d/work/samsung/section/large/SG8.jpg?1",
+          "alt": "Body composition widget animation"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#0d0c0c",
+          "src": "/static/media/d/work/samsung/section/small/SG8.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#0b0b08",
+          "src": "/static/media/d/work/samsung/section/large/SG9.jpg?1",
+          "alt": "Stress widget steps"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#0b0b08",
+          "src": "/static/media/d/work/samsung/section/small/SG9.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#1f2131",
+          "src": "/static/media/d/work/samsung/section/large/SG10.jpg?1",
+          "alt": "Close-up UI"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#1f2131",
+          "src": "/static/media/d/work/samsung/section/small/SG10.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#0b0b10",
+          "src": "/static/media/d/work/samsung/section/large/SG11.jpg?1",
+          "alt": "Breathe widget steps of Samsung watch"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#0b0b10",
+          "src": "/static/media/d/work/samsung/section/small/SG11.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#080808",
+          "src": "/static/media/d/work/samsung/section/large/SG12.jpg?1",
+          "alt": "Water consumption widget screens"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#080808",
+          "src": "/static/media/d/work/samsung/section/small/SG12.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#090606",
+          "src": "/static/media/d/work/samsung/section/large/SG13.jpg?1",
+          "alt": "Heart Rate widget measuring"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#090606",
+          "src": "/static/media/d/work/samsung/section/small/SG13.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#181520",
+          "src": "/static/media/d/work/samsung/section/large/SG14.jpg?1",
+          "alt": "Close-up UI progress"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#181520",
+          "src": "/static/media/d/work/samsung/section/small/SG14.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#a0a4a6",
+          "src": "/static/media/d/work/samsung/section/large/SG15.jpg?1",
+          "alt": "Light grey Samsung Watch 4"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#a0a4a6",
+          "src": "/static/media/d/work/samsung/section/small/SG15.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1010",
+          "bg": "#181a17",
+          "src": "/static/media/d/work/samsung/section/large/SG16.jpg?1",
+          "alt": "All UI screens together"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#181a17",
+          "src": "/static/media/d/work/samsung/section/small/SG16.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1008",
+          "bg": "#050505",
+          "src": "/static/media/d/work/samsung/section/large/SG17.jpg?1",
+          "alt": "Samsung Watch 4 face showcase"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#050505",
+          "src": "/static/media/d/work/samsung/section/small/SG17.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#282426",
+          "src": "/static/media/d/work/samsung/section/large/SG18.jpg?1",
+          "alt": "Watchfaces together"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#282426",
+          "src": "/static/media/d/work/samsung/section/small/SG18.jpg?1"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "rituals",
+    "title": "Rituals, Reimagining Loyalty",
+    "h1_lines": [
+      "Where Your",
+      "Wellbeing Is Part",
+      "Of The Journey"
+    ],
+    "role": "Lead Designer",
+    "description": "Reimagining loyalty by Bringing Rituals art of gifting online \u2013 Thoughtfully curated rewards for our most loyal customers.",
+    "team_prefix": "Done with",
+    "team_name": "AKQA Amsterdam",
+    "home_tex": "/static/media/d/work/rituals/home",
+    "hero_tex": "/static/media/d/work/rituals/hero",
+    "next_slug": "moco",
+    "next_title": "Moco Museum",
+    "order_index": 3,
+    "is_visible": 1,
+    "sections": [
+      {
+        "large": {
+          "class": "",
+          "aspect": "1800/1012",
+          "bg": "#f4f2f0",
+          "src": "/static/media/d/work/rituals/section/large/R1.jpg?1",
+          "alt": "Tear one Rituals visual"
+        },
+        "small": {
+          "class": "",
+          "aspect": "120/67",
+          "bg": "#f4f2f0",
+          "src": "/static/media/d/work/rituals/section/small/R1.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1012",
+          "bg": "#f3f2f0",
+          "src": "/static/media/d/work/rituals/section/large/R2.jpg?1",
+          "alt": "A day to remember"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#f3f2f0",
+          "src": "/static/media/d/work/rituals/section/small/R2.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1012",
+          "bg": "#f5f3f1",
+          "src": "/static/media/d/work/rituals/section/large/R3.jpg?1",
+          "alt": "Card to flip with UI"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#f5f3f1",
+          "src": "/static/media/d/work/rituals/section/small/R3.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#777269",
+          "src": "/static/media/d/work/rituals/section/large/R4.jpg?1",
+          "alt": "Rituals of Jing set"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#777269",
+          "src": "/static/media/d/work/rituals/section/small/R4.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1012",
+          "bg": "#f3f2ef",
+          "src": "/static/media/d/work/rituals/section/large/R5.jpg?1",
+          "alt": "Tear 2 loyalty program"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#f3f2ef",
+          "src": "/static/media/d/work/rituals/section/small/R5.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1012",
+          "bg": "#f2f1ee",
+          "src": "/static/media/d/work/rituals/section/large/R6.jpg?1",
+          "alt": "Card to Slider with UI"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#f2f1ee",
+          "src": "/static/media/d/work/rituals/section/small/R6.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1012",
+          "bg": "#837369",
+          "src": "/static/media/d/work/rituals/section/large/R7.jpg?1",
+          "alt": "Woman receiving a Rituals spa treatment"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#837369",
+          "src": "/static/media/d/work/rituals/section/small/R7.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1012",
+          "bg": "#f3f2ef",
+          "src": "/static/media/d/work/rituals/section/large/R8.jpg?1",
+          "alt": "Tear 3 loyalty program"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#f3f2ef",
+          "src": "/static/media/d/work/rituals/section/small/R8.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1012",
+          "bg": "#f3f2ef",
+          "src": "/static/media/d/work/rituals/section/large/R9.jpg?1",
+          "alt": "Box to open with user interface"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#f3f2ef",
+          "src": "/static/media/d/work/rituals/section/small/R9.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1012",
+          "bg": "#6f6f68",
+          "src": "/static/media/d/work/rituals/section/large/R10.jpg?1",
+          "alt": "Full Rituals of Jing set in bathroom"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#6f6f68",
+          "src": "/static/media/d/work/rituals/section/small/R10.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1012",
+          "bg": "#f5f2ef",
+          "src": "/static/media/d/work/rituals/section/large/R11.jpg?1",
+          "alt": "Custom QR code"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#f5f2ef",
+          "src": "/static/media/d/work/rituals/section/small/R11.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1012",
+          "bg": "#f7f5f3",
+          "src": "/static/media/d/work/rituals/section/large/R12.jpg?1",
+          "alt": "Your compass screen"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#f7f5f3",
+          "src": "/static/media/d/work/rituals/section/small/R12.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#dcdcda",
+          "src": "/static/media/d/work/rituals/section/large/R13.jpg?1",
+          "alt": "3 iPhones presenting the Rituals app"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#dcdcda",
+          "src": "/static/media/d/work/rituals/section/small/R13.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1012",
+          "bg": "#f7f5f3",
+          "src": "/static/media/d/work/rituals/section/large/R14.jpg?1",
+          "alt": "Our recommendations screens"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#f7f5f3",
+          "src": "/static/media/d/work/rituals/section/small/R14.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1012",
+          "bg": "#464040",
+          "src": "/static/media/d/work/rituals/section/large/R15.jpg?1",
+          "alt": "Thank you page of the Rituals app"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#464040",
+          "src": "/static/media/d/work/rituals/section/small/R15.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#b5a496",
+          "src": "/static/media/d/work/rituals/section/large/R16.jpg?1",
+          "alt": "Ritual of Namaste creams"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#b5a496",
+          "src": "/static/media/d/work/rituals/section/small/R16.jpg?1"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "moco",
+    "title": "Moco, Beyond The Canvas",
+    "h1_lines": [
+      "Iconic Art At",
+      "Your Fingertip"
+    ],
+    "role": "Lead Designer",
+    "description": "A playful yet powerful experience with real perspectives. Every little thing has been curated to make you feel \u2013 Head &amp; Heart.",
+    "team_prefix": "Done with",
+    "team_name": "AKQA Amsterdam",
+    "home_tex": "/static/media/d/work/moco/home",
+    "hero_tex": "/static/media/d/work/moco/hero",
+    "next_slug": "sennheiser",
+    "next_title": "Momentum True Wireless",
+    "order_index": 4,
+    "is_visible": 1,
+    "sections": [
+      {
+        "large": {
+          "class": "",
+          "aspect": "1800/1010",
+          "bg": "#68594d",
+          "src": "/static/media/d/work/moco/section/large/M0.jpg?1",
+          "alt": "Moco Museum home screen"
+        },
+        "small": {
+          "class": "",
+          "aspect": "120/67",
+          "bg": "#68594d",
+          "src": "/static/media/d/work/moco/section/small/M0.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#373739",
+          "src": "/static/media/d/work/moco/section/large/M1.jpg?1",
+          "alt": "Location page of the Moco website"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#373739",
+          "src": "/static/media/d/work/moco/section/small/M1.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#201c18",
+          "src": "/static/media/d/work/moco/section/large/M2.jpg?1",
+          "alt": "Modular website"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#201c18",
+          "src": "/static/media/d/work/moco/section/small/M2.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#9f9778",
+          "src": "/static/media/d/work/moco/section/large/M3.jpg?1",
+          "alt": "Macbook pro presenting Basquiat via 404 page"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#9f9778",
+          "src": "/static/media/d/work/moco/section/small/M3.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1010",
+          "bg": "#55396a",
+          "src": "/static/media/d/work/moco/section/large/M4.jpg?1",
+          "alt": "Collection site page of Daniel Arsham"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#55396a",
+          "src": "/static/media/d/work/moco/section/small/M4.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#0e0910",
+          "src": "/static/media/d/work/moco/section/large/M5.jpg?1",
+          "alt": "Menu of the Moco website"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#0e0910",
+          "src": "/static/media/d/work/moco/section/small/M5.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#948c87",
+          "src": "/static/media/d/work/moco/section/large/M6.jpg?1",
+          "alt": "Artwork grid in 4 columns"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#948c87",
+          "src": "/static/media/d/work/moco/section/small/M6.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#878888",
+          "src": "/static/media/d/work/moco/section/large/M7.jpg?1",
+          "alt": "Article from the Moco website"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#878888",
+          "src": "/static/media/d/work/moco/section/small/M7.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#a899a2",
+          "src": "/static/media/d/work/moco/section/large/M8.jpg?1",
+          "alt": "iPhones screens presenting the website"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#a899a2",
+          "src": "/static/media/d/work/moco/section/small/M8.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1230",
+          "bg": "#bb88a3",
+          "src": "/static/media/d/work/moco/section/large/M9.jpg?1",
+          "alt": "Moco Museum floor map"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/82",
+          "bg": "#bb88a3",
+          "src": "/static/media/d/work/moco/section/small/M9.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#c0a1b0",
+          "src": "/static/media/d/work/moco/section/large/M10.jpg?1",
+          "alt": "Patchwork of iPhones showcasing the app"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#c0a1b0",
+          "src": "/static/media/d/work/moco/section/small/M10.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#fcbfe3",
+          "src": "/static/media/d/work/moco/section/large/M11.jpg?1",
+          "alt": "Pink floor map"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#fcbfe3",
+          "src": "/static/media/d/work/moco/section/small/M11.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#fbcfea",
+          "src": "/static/media/d/work/moco/section/large/M12.jpg?1",
+          "alt": "Action cards of the Moco app"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#fbcfea",
+          "src": "/static/media/d/work/moco/section/small/M12.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#919991",
+          "src": "/static/media/d/work/moco/section/large/M13.jpg?1",
+          "alt": "Unlock Art in outdoors"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#919991",
+          "src": "/static/media/d/work/moco/section/small/M13.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#6f796e",
+          "src": "/static/media/d/work/moco/section/large/M14.jpg?1",
+          "alt": "AR art in outdoors"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#6f796e",
+          "src": "/static/media/d/work/moco/section/small/M14.jpg?1"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "sennheiser",
+    "title": "Sennheiser, Sound Expressed In Full",
+    "h1_lines": [
+      "The Future Of",
+      "Audio Expressed",
+      "In Full"
+    ],
+    "role": "Lead Designer",
+    "description": "A premium experience that brings forward the future of audio by injecting the right amount of emotion and craft Sennheiser deserves.",
+    "team_prefix": "Done with",
+    "team_name": "AKQA Amsterdam",
+    "home_tex": "/static/media/d/work/sennheiser/home",
+    "hero_tex": "/static/media/d/work/sennheiser/hero",
+    "next_slug": "swarovski",
+    "next_title": "Instant Wonder",
+    "order_index": 5,
+    "is_visible": 1,
+    "sections": [
+      {
+        "large": {
+          "class": "",
+          "aspect": "1800/1010",
+          "bg": "#49433c",
+          "src": "/static/media/d/work/sennheiser/section/large/S0.jpg?1",
+          "alt": "Homepage carrousel of the Sennheiser flagship store"
+        },
+        "small": {
+          "class": "",
+          "aspect": "120/67",
+          "bg": "#49433c",
+          "src": "/static/media/d/work/sennheiser/section/small/S0.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#424242",
+          "src": "/static/media/d/work/sennheiser/section/large/S1.jpg?1",
+          "alt": "Laptop showcasing 3D experience"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#424242",
+          "src": "/static/media/d/work/sennheiser/section/small/S1.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#0a0a0a",
+          "src": "/static/media/d/work/sennheiser/section/large/S2.jpg?1",
+          "alt": "Conversational search on the website"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#0a0a0a",
+          "src": "/static/media/d/work/sennheiser/section/small/S2.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#201813",
+          "src": "/static/media/d/work/sennheiser/section/large/S3.jpg?1",
+          "alt": "Result of search of the Sennheiser ecommerce"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#201813",
+          "src": "/static/media/d/work/sennheiser/section/small/S3.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#565042",
+          "src": "/static/media/d/work/sennheiser/section/large/S4.jpg?1",
+          "alt": "Sennheiser lifestyle imagery"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#565042",
+          "src": "/static/media/d/work/sennheiser/section/small/S4.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1010",
+          "bg": "#2f2f2f",
+          "src": "/static/media/d/work/sennheiser/section/large/S5.jpg?1",
+          "alt": "iPhone showing interactive hero of a product"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#2f2f2f",
+          "src": "/static/media/d/work/sennheiser/section/small/S5.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#0c0b0a",
+          "src": "/static/media/d/work/sennheiser/section/large/S6.jpg?1",
+          "alt": "3D exploded view of an Earbud"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#0c0b0a",
+          "src": "/static/media/d/work/sennheiser/section/small/S6.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#bbbcbc",
+          "src": "/static/media/d/work/sennheiser/section/large/S7.jpg?1",
+          "alt": "Product hero with variants of the website"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#bbbcbc",
+          "src": "/static/media/d/work/sennheiser/section/small/S7.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#6d5a4c",
+          "src": "/static/media/d/work/sennheiser/section/large/S8.jpg?1",
+          "alt": "Video player from the site"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#6d5a4c",
+          "src": "/static/media/d/work/sennheiser/section/small/S8.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#3b3b3b",
+          "src": "/static/media/d/work/sennheiser/section/large/S9.jpg?1",
+          "alt": "Phone showing the homepage design"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#3b3b3b",
+          "src": "/static/media/d/work/sennheiser/section/small/S9.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1244",
+          "bg": "#1b1613",
+          "src": "/static/media/d/work/sennheiser/section/large/S10.jpg?1",
+          "alt": "Dropdown product benefits"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/83",
+          "bg": "#1b1613",
+          "src": "/static/media/d/work/sennheiser/section/small/S10.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/990",
+          "bg": "#3f342d",
+          "src": "/static/media/d/work/sennheiser/section/large/S11.jpg?1",
+          "alt": "Shopable images"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/66",
+          "bg": "#3f342d",
+          "src": "/static/media/d/work/sennheiser/section/small/S11.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1008",
+          "bg": "#242425",
+          "src": "/static/media/d/work/sennheiser/section/large/S12.jpg?1",
+          "alt": "Sennheizer HE1 product hero from the ecommerce"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#242425",
+          "src": "/static/media/d/work/sennheiser/section/small/S12.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1008",
+          "bg": "#2d2d2d",
+          "src": "/static/media/d/work/sennheiser/section/large/S13.jpg?1",
+          "alt": "Image gallery of a product"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#2d2d2d",
+          "src": "/static/media/d/work/sennheiser/section/small/S13.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1008",
+          "bg": "#070707",
+          "src": "/static/media/d/work/sennheiser/section/large/S14.jpg?1",
+          "alt": "Smart search bar"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#070707",
+          "src": "/static/media/d/work/sennheiser/section/small/S14.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#c2c4c4",
+          "src": "/static/media/d/work/sennheiser/section/large/S15.jpg?1",
+          "alt": "Basket of the ecommerce"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#c2c4c4",
+          "src": "/static/media/d/work/sennheiser/section/small/S15.jpg?1"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "swarovski",
+    "title": "Swarovski, Reinventing Wonder",
+    "h1_lines": [
+      "More Than",
+      "Delightful",
+      "Pieces"
+    ],
+    "role": "Lead Designer",
+    "description": "Presenting Swarovski Fine Interiors\u2019s portfolio in an unprecedented way, a digital experience based on immersive and storytelling features.",
+    "team_prefix": "Done with",
+    "team_name": "AKQA Amsterdam",
+    "home_tex": "/static/media/d/work/swarovski/home",
+    "hero_tex": "/static/media/d/work/swarovski/hero",
+    "next_slug": "activia",
+    "next_title": "Activia Interactive Experience",
+    "order_index": 6,
+    "is_visible": 1,
+    "sections": [
+      {
+        "large": {
+          "class": "",
+          "aspect": "1800/1010",
+          "bg": "#2c1e1a",
+          "src": "/static/media/d/work/swarovski/section/large/SW0.jpg?1",
+          "alt": "Light reflecting on the homepage of the Swarovski portfolio"
+        },
+        "small": {
+          "class": "",
+          "aspect": "120/67",
+          "bg": "#2c1e1a",
+          "src": "/static/media/d/work/swarovski/section/small/SW0.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#b1aaa4",
+          "src": "/static/media/d/work/swarovski/section/large/SW1.jpg?1",
+          "alt": "2 columns Grid of Swarovski project"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#b1aaa4",
+          "src": "/static/media/d/work/swarovski/section/small/SW1.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#6b6967",
+          "src": "/static/media/d/work/swarovski/section/large/SW2.jpg?1",
+          "alt": "4 columns Grid of Swarovski project"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#6b6967",
+          "src": "/static/media/d/work/swarovski/section/small/SW2.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1010",
+          "bg": "#e6e0d6",
+          "src": "/static/media/d/work/swarovski/section/large/SW3.jpg?1",
+          "alt": "Prologue peace light interaction feature"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#e6e0d6",
+          "src": "/static/media/d/work/swarovski/section/small/SW3.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#f9f9f8",
+          "src": "/static/media/d/work/swarovski/section/large/SW4.jpg?1",
+          "alt": "Craftsmanship section in project page"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#f9f9f8",
+          "src": "/static/media/d/work/swarovski/section/small/SW4.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#e1d0b3",
+          "src": "/static/media/d/work/swarovski/section/large/SW5.jpg?1",
+          "alt": "close-up of crystals in 3D"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#e1d0b3",
+          "src": "/static/media/d/work/swarovski/section/small/SW5.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#f1ebe1",
+          "src": "/static/media/d/work/swarovski/section/large/SW6.jpg?1",
+          "alt": "Renderer of 4 crystals for interaction"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#f1ebe1",
+          "src": "/static/media/d/work/swarovski/section/small/SW6.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1010",
+          "bg": "#f2efe8",
+          "src": "/static/media/d/work/swarovski/section/large/SW7.jpg?1",
+          "alt": "Swarovski fine interiors product header"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#f2efe8",
+          "src": "/static/media/d/work/swarovski/section/small/SW7.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#afafac",
+          "src": "/static/media/d/work/swarovski/section/large/SW8.jpg?1",
+          "alt": "Collection carousel from the Swarovski website"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#afafac",
+          "src": "/static/media/d/work/swarovski/section/small/SW8.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1010",
+          "bg": "#4d443e",
+          "src": "/static/media/d/work/swarovski/section/large/SW9.jpg?1",
+          "alt": "Classic project hero designed at AKQA"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#4d443e",
+          "src": "/static/media/d/work/swarovski/section/small/SW9.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#afa7a2",
+          "src": "/static/media/d/work/swarovski/section/large/SW10.jpg?1",
+          "alt": "Services Swarovski offers"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#afa7a2",
+          "src": "/static/media/d/work/swarovski/section/small/SW10.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#585858",
+          "src": "/static/media/d/work/swarovski/section/large/SW11.jpg?1",
+          "alt": "About Swarovski fine interiors page from the website"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#585858",
+          "src": "/static/media/d/work/swarovski/section/small/SW11.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#f0f1f2",
+          "src": "/static/media/d/work/swarovski/section/large/SW12.jpg?1",
+          "alt": "Drag and drop interaction with 3D crystal model"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#f0f1f2",
+          "src": "/static/media/d/work/swarovski/section/small/SW12.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#a39d99",
+          "src": "/static/media/d/work/swarovski/section/large/SW13.jpg?1",
+          "alt": "Selection of mobile screens for the Swarovski website"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#a39d99",
+          "src": "/static/media/d/work/swarovski/section/small/SW13.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1010",
+          "bg": "#040404",
+          "src": "/static/media/d/work/swarovski/section/large/SW14.jpg?1",
+          "alt": "Light interaction with the cursor for the 404 page"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#040404",
+          "src": "/static/media/d/work/swarovski/section/small/SW14.jpg?1"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "activia",
+    "title": "Activia, From Nature To Culture",
+    "h1_lines": [
+      "Welcome To",
+      "The Culture Of",
+      "Living Well"
+    ],
+    "role": "Lead Designer",
+    "description": "Where it all begins. An ecosystem that guides people towards gut health, making the journey to holistic wellness easier.",
+    "team_prefix": "Done with",
+    "team_name": "AKQA Amsterdam",
+    "home_tex": "/static/media/d/work/activia/home",
+    "hero_tex": "/static/media/d/work/activia/hero",
+    "next_slug": "saeco",
+    "next_title": "Saeco Xelsis Suprema",
+    "order_index": 7,
+    "is_visible": 1,
+    "sections": [
+      {
+        "large": {
+          "class": "",
+          "aspect": "1800/1092",
+          "bg": "#aba99e",
+          "src": "/static/media/d/work/activia/section/large/A0.jpg?1",
+          "alt": "Homepage hero of the Activia website"
+        },
+        "small": {
+          "class": "",
+          "aspect": "120/73",
+          "bg": "#aba99e",
+          "src": "/static/media/d/work/activia/section/small/A0.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1092",
+          "bg": "#9fa19f",
+          "src": "/static/media/d/work/activia/section/large/A1.jpg?1",
+          "alt": "Macbook showcasing the design of the site"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/73",
+          "bg": "#9fa19f",
+          "src": "/static/media/d/work/activia/section/small/A1.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1092",
+          "bg": "#b1bea8",
+          "src": "/static/media/d/work/activia/section/large/A2.jpg?1",
+          "alt": "Infinity grid from the Activia ecommerce"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/73",
+          "bg": "#b1bea8",
+          "src": "/static/media/d/work/activia/section/small/A2.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1092",
+          "bg": "#dcdfd5",
+          "src": "/static/media/d/work/activia/section/large/A3.jpg?1",
+          "alt": "Filters feature from the Activia store"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/73",
+          "bg": "#dcdfd5",
+          "src": "/static/media/d/work/activia/section/small/A3.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1092",
+          "bg": "#b3a599",
+          "src": "/static/media/d/work/activia/section/large/A4.jpg?1",
+          "alt": "Screen presenting category landing page"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/73",
+          "bg": "#b3a599",
+          "src": "/static/media/d/work/activia/section/small/A4.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1092",
+          "bg": "#ecede8",
+          "src": "/static/media/d/work/activia/section/large/A5.jpg?1",
+          "alt": "Grid of the Activia products"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/73",
+          "bg": "#ecede8",
+          "src": "/static/media/d/work/activia/section/small/A5.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1092",
+          "bg": "#a09883",
+          "src": "/static/media/d/work/activia/section/large/A6.jpg?1",
+          "alt": "Product detail page with interaction"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/73",
+          "bg": "#a09883",
+          "src": "/static/media/d/work/activia/section/small/A6.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1092",
+          "bg": "#d0e8c0",
+          "src": "/static/media/d/work/activia/section/large/A7.jpg?1",
+          "alt": "Design screen of a widget to find a product"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/73",
+          "bg": "#d0e8c0",
+          "src": "/static/media/d/work/activia/section/small/A7.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1092",
+          "bg": "#1e5c35",
+          "src": "/static/media/d/work/activia/section/large/A8.jpg?1",
+          "alt": "Loader illustrations designed at AKQA"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/73",
+          "bg": "#1e5c35",
+          "src": "/static/media/d/work/activia/section/small/A8.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1092",
+          "bg": "#cbcfca",
+          "src": "/static/media/d/work/activia/section/large/A9.jpg?1",
+          "alt": "Screen showing articles boxes from the Activia website"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/73",
+          "bg": "#cbcfca",
+          "src": "/static/media/d/work/activia/section/small/A9.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1092",
+          "bg": "#807a61",
+          "src": "/static/media/d/work/activia/section/large/A10.jpg?1",
+          "alt": "Recipe made with Activia product"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/73",
+          "bg": "#807a61",
+          "src": "/static/media/d/work/activia/section/small/A10.jpg?1"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "saeco",
+    "title": "Saeco, From Gaggio With Love",
+    "h1_lines": [
+      "Bringing Passion",
+      "Back Into Coffee"
+    ],
+    "role": "Lead Designer",
+    "description": "Experience Saeco\u2019s love and respect for the perfect cup through rich storytelling bringing in Italian heritage through every detail.",
+    "team_prefix": "Pitch done with",
+    "team_name": "AKQA Amsterdam",
+    "home_tex": "/static/media/d/work/saeco/home",
+    "hero_tex": "/static/media/d/work/saeco/hero",
+    "next_slug": "gucci",
+    "next_title": "The Regeneration Suite",
+    "order_index": 8,
+    "is_visible": 1,
+    "sections": [
+      {
+        "large": {
+          "class": "",
+          "aspect": "1800/1010",
+          "bg": "#6a6665",
+          "src": "/static/media/d/work/saeco/section/large/SC0.jpg?1",
+          "alt": "Saeco website introduction with hand written typography"
+        },
+        "small": {
+          "class": "",
+          "aspect": "120/67",
+          "bg": "#6a6665",
+          "src": "/static/media/d/work/saeco/section/small/SC0.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#b2aba4",
+          "src": "/static/media/d/work/saeco/section/large/SC1.jpg?1",
+          "alt": "Craftmanship section of the website"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#b2aba4",
+          "src": "/static/media/d/work/saeco/section/small/SC1.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1790",
+          "bg": "#554944",
+          "src": "/static/media/d/work/saeco/section/large/SC2.jpg?1",
+          "alt": "Using haptics to enhance sensations"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/119",
+          "bg": "#554944",
+          "src": "/static/media/d/work/saeco/section/small/SC2.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#18100d",
+          "src": "/static/media/d/work/saeco/section/large/SC3.jpg?1",
+          "alt": "Immersive experience on the Saeco website"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#18100d",
+          "src": "/static/media/d/work/saeco/section/small/SC3.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#544944",
+          "src": "/static/media/d/work/saeco/section/large/SC4.jpg?1",
+          "alt": "Design of the interactive video player"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#544944",
+          "src": "/static/media/d/work/saeco/section/small/SC4.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1010",
+          "bg": "#ede9e0",
+          "src": "/static/media/d/work/saeco/section/large/SC5.jpg?1",
+          "alt": "Illustration of Saeco technology"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#ede9e0",
+          "src": "/static/media/d/work/saeco/section/small/SC5.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/810",
+          "bg": "#726c68",
+          "src": "/static/media/d/work/saeco/section/large/SC6.jpg?1",
+          "alt": "All types of coffee from Saeco"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/54",
+          "bg": "#726c68",
+          "src": "/static/media/d/work/saeco/section/small/SC6.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#2c2724",
+          "src": "/static/media/d/work/saeco/section/large/SC7.jpg?1",
+          "alt": "Coffee Machine UI in 3D"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#2c2724",
+          "src": "/static/media/d/work/saeco/section/small/SC7.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#66453b",
+          "src": "/static/media/d/work/saeco/section/large/SC8.jpg?1",
+          "alt": "Product page from the ecommerce of Saeco"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#66453b",
+          "src": "/static/media/d/work/saeco/section/small/SC8.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#342c28",
+          "src": "/static/media/d/work/saeco/section/large/SC9.jpg?1",
+          "alt": "Content Carousel of videos and images"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#342c28",
+          "src": "/static/media/d/work/saeco/section/small/SC9.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mtl",
+          "aspect": "1800/1010",
+          "bg": "#564b49",
+          "src": "/static/media/d/work/saeco/section/large/SC10.jpg?1",
+          "alt": "UI elements on top of photography"
+        },
+        "small": {
+          "class": "w-preview-mtl",
+          "aspect": "120/67",
+          "bg": "#564b49",
+          "src": "/static/media/d/work/saeco/section/small/SC10.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#2d241e",
+          "src": "/static/media/d/work/saeco/section/large/SC11.jpg?1",
+          "alt": "Slider of Saeco products with interaction UI"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#2d241e",
+          "src": "/static/media/d/work/saeco/section/small/SC11.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#282422",
+          "src": "/static/media/d/work/saeco/section/large/SC12.jpg?1",
+          "alt": "Place Coffee machine through augmented reality"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#282422",
+          "src": "/static/media/d/work/saeco/section/small/SC12.jpg?1"
+        }
+      },
+      {
+        "large": {
+          "class": "w-s-mts",
+          "aspect": "1800/1010",
+          "bg": "#82807b",
+          "src": "/static/media/d/work/saeco/section/large/SC13.jpg?1",
+          "alt": "Kitchen with 3D model of the Saeco machine"
+        },
+        "small": {
+          "class": "w-preview-mts",
+          "aspect": "120/67",
+          "bg": "#82807b",
+          "src": "/static/media/d/work/saeco/section/small/SC13.jpg?1"
+        }
+      }
+    ]
+  }
+]

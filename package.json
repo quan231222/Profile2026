@@ -1,0 +1,15 @@
+{
+  "name": "camille-mormal-clone",
+  "version": "1.0.0",
+  "description": "1:1 complete clone of camillemormal.com portfolio",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
