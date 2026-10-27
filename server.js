@@ -13,6 +13,13 @@ const {
 
 const { renderDesktopAboutHtml, renderMobileAboutHtml } = require('./renderAbout');
 const { renderDesktopProjectHtml, renderMobileProjectHtml } = require('./renderProject');
+const {
+  cleanTexturePath,
+  getRandomIntroTextures,
+  getRandomizedProjects,
+  renderDesktopHomeHtml,
+  renderMobileHomeHtml
+} = require('./workIntro');
 
 const PORT = process.env.PORT || 3001;
 const ROOT_DIR = __dirname;
@@ -215,6 +222,40 @@ const server = http.createServer((req, res) => {
         const allDbProjects = getProjects();
         const totalProjects = allDbProjects.length;
 
+        // 1.3 Dynamically randomize Intro Textures from DB projects
+        if (payload.data && payload.data.load) {
+          const introTextures = getRandomIntroTextures(allDbProjects, 25);
+          payload.data.load.tex = introTextures;
+          payload.data.load.texL = introTextures.length;
+        }
+
+        // 1.4 Dynamically randomize Work Page projects on visit/refresh
+        const homeProjects = getRandomizedProjects(allDbProjects);
+        if (payload.data && payload.data['/']) {
+          payload.data['/'].tex = homeProjects.map(p => cleanTexturePath(p.home_tex));
+          payload.data['/'].texL = homeProjects.length;
+        }
+
+        const dynamicDesktopHomeHtml = renderDesktopHomeHtml(homeProjects);
+        const dynamicMobileHomeHtml = renderMobileHomeHtml(homeProjects);
+
+        if (payload.cache && payload.cache['/']) {
+          payload.cache['/'].html = device === 'm' ? dynamicMobileHomeHtml : dynamicDesktopHomeHtml;
+        }
+
+        if ((routeName === 'home' || routeName === '') && payload.body) {
+          const dynamicHomeHtml = device === 'm' ? dynamicMobileHomeHtml : dynamicDesktopHomeHtml;
+          const mainOpen = '<main id="main">';
+          const mainClose = '</main>';
+          const idxOpen = payload.body.indexOf(mainOpen);
+          const idxClose = payload.body.lastIndexOf(mainClose);
+          if (idxOpen !== -1 && idxClose !== -1) {
+            payload.body = payload.body.slice(0, idxOpen + mainOpen.length) +
+                           dynamicHomeHtml +
+                           payload.body.slice(idxClose);
+          }
+        }
+
         allDbProjects.forEach(proj => {
           const projKey = '/' + proj.slug;
           const dynamicProjHtml = device === 'm'
@@ -257,7 +298,18 @@ const server = http.createServer((req, res) => {
 
   // --- 2. Static asset request (/static/...) ---
   if (pathname.startsWith('/static/')) {
-    const filePath = path.join(ROOT_DIR, pathname);
+    let filePath = path.join(ROOT_DIR, pathname);
+    if (!fs.existsSync(filePath)) {
+      const parsedPath = path.parse(filePath);
+      const possibleExtensions = ['.jpg', '.png', '.webp', '.jpeg'];
+      for (const ext of possibleExtensions) {
+        const candidate = path.join(parsedPath.dir, parsedPath.name + ext);
+        if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+          filePath = candidate;
+          break;
+        }
+      }
+    }
     if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
       const ext = path.extname(filePath).toLowerCase();
       const contentType = MIME_TYPES[ext] || 'application/octet-stream';
