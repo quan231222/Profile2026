@@ -8,13 +8,19 @@ function escapeHtml(str) {
 }
 
 function renderDesktopAboutHtml(data) {
-  const { hero, experiences, awards, clients, contacts, credits, visibility = {} } = data;
+  const { hero, experiences, awards, clients, contacts, credits, visibility = {}, section_titles = {} } = data;
 
   const showExp = visibility.experience !== false && visibility.experience !== 0;
   const showAwards = visibility.awards !== false && visibility.awards !== 0;
   const showClients = visibility.clients !== false && visibility.clients !== 0;
   const showContacts = visibility.contacts !== false && visibility.contacts !== 0;
   const showCredits = visibility.credits !== false && visibility.credits !== 0;
+
+  const titleExp = section_titles.experience || 'Working Experience';
+  const titleAwards = section_titles.awards || 'Awards & Recognition';
+  const titleClients = section_titles.clients || 'Brands I Worked With';
+  const titleContacts = section_titles.contacts || 'Get In Touch';
+  const titleCredits = section_titles.credits || 'Credits';
 
   // 1. Right Column Sections (#a-r)
   // Experiences
@@ -27,7 +33,7 @@ function renderDesktopAboutHtml(data) {
       const periodHtml = `<div class="a-r-ts sfx-y a-r-mts"><div>${escapeHtml(exp.period)}</div></div>`;
       return `<li class="${marginClass}">${roleHtml}${companyHtml}${periodHtml}</li>`;
     }).join('');
-    expSectionR = `<section id="a-r-experience" class="a-r-s"><h2 class="sfx-y"><span>Working Experience</span></h2><ul class="a-r-ml">${expItemsR}</ul></section>`;
+    expSectionR = `<section id="a-r-experience" class="a-r-s"><h2 class="sfx-y"><span>${escapeHtml(titleExp)}</span></h2><ul class="a-r-ml">${expItemsR}</ul></section>`;
   }
 
   // Awards
@@ -45,7 +51,7 @@ function renderDesktopAboutHtml(data) {
       const yearHtml = aw.year ? `<div class="a-r-ts sfx-y"><div>${escapeHtml(aw.year)}</div></div>` : '';
       return `<li class="${marginClass}">${titleHtml}${projHtml}${catHtml}${yearHtml}</li>`;
     }).join('');
-    awardSectionR = `<section id="a-r-recognition" class="a-r-s"><h2 class="sfx-y"><span>Awards &amp; Recognition</span></h2><ul class="a-r-ml">${awardItemsR}</ul></section>`;
+    awardSectionR = `<section id="a-r-recognition" class="a-r-s"><h2 class="sfx-y"><span>${escapeHtml(titleAwards)}</span></h2><ul class="a-r-ml">${awardItemsR}</ul></section>`;
   }
 
   // Clients
@@ -55,7 +61,7 @@ function renderDesktopAboutHtml(data) {
       const name = typeof c === 'string' ? c : c.name;
       return `<li><div class="a-r-ts sfx-y"><div>${escapeHtml(name)}</div></div></li>`;
     }).join('');
-    clientSectionR = `<section id="a-r-clients" class="a-r-s"><h2 class="sfx-y"><span>Brands I Worked With</span></h2><ul class="a-r-ml a-r-mtl">${clientItemsR}</ul></section>`;
+    clientSectionR = `<section id="a-r-clients" class="a-r-s"><h2 class="sfx-y"><span>${escapeHtml(titleClients)}</span></h2><ul class="a-r-ml a-r-mtl">${clientItemsR}</ul></section>`;
   }
 
   // Contacts
@@ -66,7 +72,7 @@ function renderDesktopAboutHtml(data) {
       const target = isExternal ? ' target="_blank" rel="noopener"' : '';
       return `<li><a class="a-r-ts sfx-y" href="${escapeHtml(ct.url)}"${target}><div>${escapeHtml(ct.label)}</div></a></li>`;
     }).join('');
-    contactSectionR = `<section id="a-r-contact" class="a-r-s"><h2 class="sfx-y"><span>Get In Touch</span></h2><ul class="a-r-ml a-r-mtl">${contactItemsR}</ul></section>`;
+    contactSectionR = `<section id="a-r-contact" class="a-r-s"><h2 class="sfx-y"><span>${escapeHtml(titleContacts)}</span></h2><ul class="a-r-ml a-r-mtl">${contactItemsR}</ul></section>`;
   }
 
   // Credits
@@ -80,7 +86,7 @@ function renderDesktopAboutHtml(data) {
       }
       return `<li class="${marginClass}">${content}</li>`;
     }).join('');
-    creditSectionR = `<section id="a-r-credits" class="a-r-s"><h2 class="sfx-y"><span>Credits</span></h2><ul class="a-r-ml">${creditItemsR}</ul></section>`;
+    creditSectionR = `<section id="a-r-credits" class="a-r-s"><h2 class="sfx-y"><span>${escapeHtml(titleCredits)}</span></h2><ul class="a-r-ml">${creditItemsR}</ul></section>`;
   }
 
   const rightHtml = `<div id="a-r">` +
@@ -105,7 +111,7 @@ function renderDesktopAboutHtml(data) {
       const periodHtml = `<div class="a-l-ts a-l-mts">${escapeHtml(exp.period)}</div>`;
       return `<li class="${marginClass}">${roleHtml}${companyHtml}${periodHtml}</li>`;
     }).join('');
-    expSectionL = `<div class="a-l-s"><div>Working Experience</div><ul class="a-l-ml">${expItemsL}</ul></div>`;
+    expSectionL = `<div class="a-l-s"><div>${escapeHtml(titleExp)}</div><ul class="a-l-ml">${expItemsL}</ul></div>`;
   }
 
   let awardSectionL = '';
@@ -122,7 +128,7 @@ function renderDesktopAboutHtml(data) {
       const yearHtml = aw.year ? `<div class="a-l-ts">${escapeHtml(aw.year)}</div>` : '';
       return `<li class="${marginClass}">${titleHtml}${projHtml}${catHtml}${yearHtml}</li>`;
     }).join('');
-    awardSectionL = `<div class="a-l-s"><div>Awards &amp; Recognition</div><ul class="a-l-ml">${awardItemsL}</ul></div>`;
+    awardSectionL = `<div class="a-l-s"><div>${escapeHtml(titleAwards)}</div><ul class="a-l-ml">${awardItemsL}</ul></div>`;
   }
 
   let clientSectionL = '';
@@ -131,7 +137,7 @@ function renderDesktopAboutHtml(data) {
       const name = typeof c === 'string' ? c : c.name;
       return `<li><div class="a-l-ts">${escapeHtml(name)}</div></li>`;
     }).join('');
-    clientSectionL = `<div class="a-l-s"><div>Brands I Worked With</div><ul class="a-l-ml a-l-mtl">${clientItemsL}</ul></div>`;
+    clientSectionL = `<div class="a-l-s"><div>${escapeHtml(titleClients)}</div><ul class="a-l-ml a-l-mtl">${clientItemsL}</ul></div>`;
   }
 
   let contactSectionL = '';
@@ -139,7 +145,7 @@ function renderDesktopAboutHtml(data) {
     const contactItemsL = contacts.map(ct => {
       return `<li><div class="a-l-ts">${escapeHtml(ct.label)}</div></li>`;
     }).join('');
-    contactSectionL = `<div class="a-l-s"><div>Get In Touch</div><ul class="a-l-ml a-l-mtl">${contactItemsL}</ul></div>`;
+    contactSectionL = `<div class="a-l-s"><div>${escapeHtml(titleContacts)}</div><ul class="a-l-ml a-l-mtl">${contactItemsL}</ul></div>`;
   }
 
   let creditSectionL = '';
@@ -148,7 +154,7 @@ function renderDesktopAboutHtml(data) {
       const marginClass = index === 0 ? 'a-l-mtl' : 'a-l-mtm';
       return `<li class="${marginClass}"><div class="a-l-tm">${escapeHtml(cr.name)}</div><div class="a-l-ts a-l-mts">${escapeHtml(cr.role)}</div></li>`;
     }).join('');
-    creditSectionL = `<div class="a-l-s"><div>Credits</div><ul class="a-l-ml">${creditItemsL}</ul></div>`;
+    creditSectionL = `<div class="a-l-s"><div>${escapeHtml(titleCredits)}</div><ul class="a-l-ml">${creditItemsL}</ul></div>`;
   }
 
   const leftHtml = `<div id="a-l-w"><div id="a-l">` +
@@ -167,7 +173,7 @@ function renderDesktopAboutHtml(data) {
 }
 
 function renderMobileAboutHtml(data) {
-  const { hero, experiences, awards, clients, contacts, credits, visibility = {} } = data;
+  const { hero, experiences, awards, clients, contacts, credits, visibility = {}, section_titles = {} } = data;
 
   const showExp = visibility.experience !== false && visibility.experience !== 0;
   const showAwards = visibility.awards !== false && visibility.awards !== 0;
@@ -175,13 +181,19 @@ function renderMobileAboutHtml(data) {
   const showContacts = visibility.contacts !== false && visibility.contacts !== 0;
   const showCredits = visibility.credits !== false && visibility.credits !== 0;
 
+  const titleExp = section_titles.experience || 'Working Experience';
+  const titleAwards = section_titles.awards || 'Awards & Recognition';
+  const titleClients = section_titles.clients || 'Brands I Worked With';
+  const titleContacts = section_titles.contacts || 'Get In Touch';
+  const titleCredits = section_titles.credits || 'Credits';
+
   let expSectionM = '';
   if (showExp) {
     const expItemsM = experiences.map(exp => {
       const companyHtml = exp.company ? `<div>${escapeHtml(exp.company)}</div>` : '';
       return `<li class="a-mtm"><div>${escapeHtml(exp.role)}</div>${companyHtml}<div class="a-txt-s a-mtxs">${escapeHtml(exp.period)}</div></li>`;
     }).join('');
-    expSectionM = `<section class="wrap wrap-t a-mtxl"><h2>Working Experience</h2><ul class="a-ml">${expItemsM}</ul></section>`;
+    expSectionM = `<section class="wrap wrap-t a-mtxl"><h2>${escapeHtml(titleExp)}</h2><ul class="a-ml">${expItemsM}</ul></section>`;
   }
 
   let awardSectionM = '';
@@ -196,7 +208,7 @@ function renderMobileAboutHtml(data) {
       const yearHtml = aw.year ? `<div class="a-txt-s">${escapeHtml(aw.year)}</div>` : '';
       return `<li class="a-mtm"><div>${escapeHtml(aw.title)}</div>${projHtml}${catHtml}${yearHtml}</li>`;
     }).join('');
-    awardSectionM = `<section class="wrap wrap-t a-mtxl"><h2>Awards &amp; Recognition</h2><ul class="a-ml">${awardItemsM}</ul></section>`;
+    awardSectionM = `<section class="wrap wrap-t a-mtxl"><h2>${escapeHtml(titleAwards)}</h2><ul class="a-ml">${awardItemsM}</ul></section>`;
   }
 
   let clientSectionM = '';
@@ -205,7 +217,7 @@ function renderMobileAboutHtml(data) {
       const name = typeof c === 'string' ? c : c.name;
       return `<li><div class="a-txt-s">${escapeHtml(name)}</div></li>`;
     }).join('');
-    clientSectionM = `<section class="wrap wrap-t a-mtxl"><h2>Brands I Worked With</h2><ul class="a-ml a-mtm">${clientItemsM}</ul></section>`;
+    clientSectionM = `<section class="wrap wrap-t a-mtxl"><h2>${escapeHtml(titleClients)}</h2><ul class="a-ml a-mtm">${clientItemsM}</ul></section>`;
   }
 
   let creditSectionM = '';
@@ -217,7 +229,7 @@ function renderMobileAboutHtml(data) {
       }
       return `<li class="">${content}</li>`;
     }).join('');
-    creditSectionM = `<section class="wrap wrap-t a-mtxl"><h2>Credits</h2><ul class="a-ml">${creditItemsM}</ul></section>`;
+    creditSectionM = `<section class="wrap wrap-t a-mtxl"><h2>${escapeHtml(titleCredits)}</h2><ul class="a-ml">${creditItemsM}</ul></section>`;
   }
 
   let contactSectionM = '';

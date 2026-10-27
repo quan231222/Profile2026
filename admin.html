@@ -716,7 +716,7 @@
       <div id="tab-experience" class="tab-pane">
         <div class="panel-header">
           <div>
-            <h2>Working Experience</h2>
+            <h2 id="header-experience">Working Experience</h2>
             <p>Lịch sử làm việc, công ty và vị trí</p>
           </div>
           <div style="display:flex;align-items:center;gap:12px;">
@@ -727,6 +727,13 @@
             <button class="btn btn-secondary" onclick="addExperience()">+ Thêm vị trí</button>
           </div>
         </div>
+        <div class="form-group" style="margin-bottom:20px;background:var(--card-inner);padding:16px;border-radius:8px;border:1px solid var(--border);">
+          <label style="font-weight:600;display:flex;justify-content:space-between;align-items:center;">
+            <span>Tiêu đề Section</span>
+            <small style="color:var(--text-muted);font-weight:normal;">Hiển thị trực tiếp trên trang About</small>
+          </label>
+          <input type="text" id="title-experience" placeholder="Working Experience" oninput="onSectionTitleChange('experience', this.value)">
+        </div>
         <div id="experience-list" class="item-list"></div>
       </div>
 
@@ -734,7 +741,7 @@
       <div id="tab-awards" class="tab-pane">
         <div class="panel-header">
           <div>
-            <h2>Awards & Recognition</h2>
+            <h2 id="header-awards">Awards & Recognition</h2>
             <p>Các giải thưởng, đề cử và năm đạt được</p>
           </div>
           <div style="display:flex;align-items:center;gap:12px;">
@@ -745,6 +752,13 @@
             <button class="btn btn-secondary" onclick="addAward()">+ Thêm giải thưởng</button>
           </div>
         </div>
+        <div class="form-group" style="margin-bottom:20px;background:var(--card-inner);padding:16px;border-radius:8px;border:1px solid var(--border);">
+          <label style="font-weight:600;display:flex;justify-content:space-between;align-items:center;">
+            <span>Tiêu đề Section</span>
+            <small style="color:var(--text-muted);font-weight:normal;">Hiển thị trực tiếp trên trang About</small>
+          </label>
+          <input type="text" id="title-awards" placeholder="Awards & Recognition" oninput="onSectionTitleChange('awards', this.value)">
+        </div>
         <div id="awards-list" class="item-list"></div>
       </div>
 
@@ -752,13 +766,20 @@
       <div id="tab-clients" class="tab-pane">
         <div class="panel-header">
           <div>
-            <h2>Brands I Worked With</h2>
+            <h2 id="header-clients">Brands I Worked With</h2>
             <p>Danh sách các đối tác & thương hiệu từng hợp tác</p>
           </div>
           <div id="toggle-clients" class="toggle-bar active" onclick="toggleSection('clients')">
             <div class="toggle-switch"></div>
             <span class="toggle-label" id="label-clients">Đang hiển thị</span>
           </div>
+        </div>
+        <div class="form-group" style="margin-bottom:20px;background:var(--card-inner);padding:16px;border-radius:8px;border:1px solid var(--border);">
+          <label style="font-weight:600;display:flex;justify-content:space-between;align-items:center;">
+            <span>Tiêu đề Section</span>
+            <small style="color:var(--text-muted);font-weight:normal;">Hiển thị trực tiếp trên trang About</small>
+          </label>
+          <input type="text" id="title-clients" placeholder="Brands I Worked With" oninput="onSectionTitleChange('clients', this.value)">
         </div>
         <div id="clients-container" class="tags-container"></div>
         <div class="tag-input-row">
@@ -771,7 +792,7 @@
       <div id="tab-contacts" class="tab-pane">
         <div class="panel-header">
           <div>
-            <h2>Get In Touch</h2>
+            <h2 id="header-contacts">Get In Touch</h2>
             <p>Các kênh mạng xã hội, email liên hệ</p>
           </div>
           <div style="display:flex;align-items:center;gap:12px;">
@@ -782,6 +803,13 @@
             <button class="btn btn-secondary" onclick="addContact()">+ Thêm liên hệ</button>
           </div>
         </div>
+        <div class="form-group" style="margin-bottom:20px;background:var(--card-inner);padding:16px;border-radius:8px;border:1px solid var(--border);">
+          <label style="font-weight:600;display:flex;justify-content:space-between;align-items:center;">
+            <span>Tiêu đề Section</span>
+            <small style="color:var(--text-muted);font-weight:normal;">Hiển thị trực tiếp trên trang About</small>
+          </label>
+          <input type="text" id="title-contacts" placeholder="Get In Touch" oninput="onSectionTitleChange('contacts', this.value)">
+        </div>
         <div id="contacts-list" class="item-list"></div>
       </div>
 
@@ -789,7 +817,7 @@
       <div id="tab-credits" class="tab-pane">
         <div class="panel-header">
           <div>
-            <h2>Credits</h2>
+            <h2 id="header-credits">Credits</h2>
             <p>Đóng góp phát triển và typography</p>
           </div>
           <div style="display:flex;align-items:center;gap:12px;">
@@ -799,6 +827,13 @@
             </div>
             <button class="btn btn-secondary" onclick="addCredit()">+ Thêm credit</button>
           </div>
+        </div>
+        <div class="form-group" style="margin-bottom:20px;background:var(--card-inner);padding:16px;border-radius:8px;border:1px solid var(--border);">
+          <label style="font-weight:600;display:flex;justify-content:space-between;align-items:center;">
+            <span>Tiêu đề Section</span>
+            <small style="color:var(--text-muted);font-weight:normal;">Hiển thị trực tiếp trên trang About</small>
+          </label>
+          <input type="text" id="title-credits" placeholder="Credits" oninput="onSectionTitleChange('credits', this.value)">
         </div>
         <div id="credits-list" class="item-list"></div>
       </div>
@@ -967,6 +1002,24 @@
       const vis = currentAboutData.visibility || {};
       ['experience', 'awards', 'clients', 'contacts', 'credits'].forEach(key => {
         updateToggleUI(key, vis[key] !== false);
+      });
+
+      // Section Titles
+      currentAboutData.section_titles = currentAboutData.section_titles || {};
+      const titles = currentAboutData.section_titles;
+      const defaultTitles = {
+        experience: 'Working Experience',
+        awards: 'Awards & Recognition',
+        clients: 'Brands I Worked With',
+        contacts: 'Get In Touch',
+        credits: 'Credits'
+      };
+      ['experience', 'awards', 'clients', 'contacts', 'credits'].forEach(key => {
+        const inputEl = document.getElementById('title-' + key);
+        const headerEl = document.getElementById('header-' + key);
+        const val = titles[key] !== undefined ? titles[key] : defaultTitles[key];
+        if (inputEl) inputEl.value = val;
+        if (headerEl) headerEl.textContent = val || defaultTitles[key];
       });
 
       // Experiences
@@ -1178,11 +1231,33 @@
       renderAbout();
     }
 
+    function onSectionTitleChange(key, value) {
+      if (!currentAboutData.section_titles) currentAboutData.section_titles = {};
+      currentAboutData.section_titles[key] = value;
+      const headerEl = document.getElementById('header-' + key);
+      const defaultTitles = {
+        experience: 'Working Experience',
+        awards: 'Awards & Recognition',
+        clients: 'Brands I Worked With',
+        contacts: 'Get In Touch',
+        credits: 'Credits'
+      };
+      if (headerEl) headerEl.textContent = value.trim() || defaultTitles[key];
+    }
+
     // Save About Data
     async function saveAboutData() {
       currentAboutData.hero.headline = document.getElementById('hero-headline').value;
       currentAboutData.hero.paragraph1 = document.getElementById('hero-p1').value;
       currentAboutData.hero.paragraph2 = document.getElementById('hero-p2').value;
+
+      currentAboutData.section_titles = currentAboutData.section_titles || {};
+      ['experience', 'awards', 'clients', 'contacts', 'credits'].forEach(key => {
+        const inputEl = document.getElementById('title-' + key);
+        if (inputEl) {
+          currentAboutData.section_titles[key] = inputEl.value;
+        }
+      });
 
       try {
         const res = await fetch('/api/about', {

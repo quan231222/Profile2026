@@ -19,6 +19,11 @@ function initDb() {
       is_visible INTEGER NOT NULL DEFAULT 1
     );
 
+    CREATE TABLE IF NOT EXISTS about_section_titles (
+      section_key TEXT PRIMARY KEY,
+      title TEXT NOT NULL
+    );
+
     CREATE TABLE IF NOT EXISTS about_experiences (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       role TEXT NOT NULL,
@@ -148,6 +153,22 @@ function initDb() {
     });
   }
 
+  // 2.1 Seed About Section Titles if empty
+  const titleCheck = db.prepare('SELECT COUNT(*) as count FROM about_section_titles').get();
+  if (titleCheck.count === 0) {
+    const titleStmt = db.prepare('INSERT INTO about_section_titles (section_key, title) VALUES (?, ?)');
+    const defaultTitles = [
+      ['experience', 'Working Experience'],
+      ['awards', 'Awards & Recognition'],
+      ['clients', 'Brands I Worked With'],
+      ['contacts', 'Get In Touch'],
+      ['credits', 'Credits']
+    ];
+    for (const [key, title] of defaultTitles) {
+      titleStmt.run(key, title);
+    }
+  }
+
   // 3. Seed Projects if empty
   const projCheck = db.prepare('SELECT COUNT(*) as count FROM projects').get();
   if (projCheck.count === 0) {
@@ -209,9 +230,22 @@ function getAboutData() {
     visibility[r.section_key] = r.is_visible === 1;
   });
 
+  const titleRows = db.prepare('SELECT * FROM about_section_titles').all();
+  const section_titles = {
+    experience: 'Working Experience',
+    awards: 'Awards & Recognition',
+    clients: 'Brands I Worked With',
+    contacts: 'Get In Touch',
+    credits: 'Credits'
+  };
+  titleRows.forEach(r => {
+    if (r.title) section_titles[r.section_key] = r.title;
+  });
+
   return {
     hero,
     visibility,
+    section_titles,
     experiences,
     awards,
     clients,
@@ -235,6 +269,16 @@ function updateAboutData(data) {
     const stmt = db.prepare('INSERT OR REPLACE INTO about_visibility (section_key, is_visible) VALUES (?, ?)');
     for (const [key, val] of Object.entries(data.visibility)) {
       stmt.run(key, val ? 1 : 0);
+    }
+  }
+
+  // Update Section Titles
+  if (data.section_titles && typeof data.section_titles === 'object') {
+    const stmt = db.prepare('INSERT OR REPLACE INTO about_section_titles (section_key, title) VALUES (?, ?)');
+    for (const [key, val] of Object.entries(data.section_titles)) {
+      if (typeof val === 'string') {
+        stmt.run(key, val.trim());
+      }
     }
   }
 
