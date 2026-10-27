@@ -113,7 +113,7 @@ function renderMobileProjectHtml(project) {
 
   return `<div class="w page">` +
     `<header class="w-hero" style="background-image: url('${heroImg}');">` +
-      `<nav class="nav wrap"><a href="/">Camille Mormal</a> <a href="/">Back</a></nav>` +
+      `<nav class="nav wrap"><a href="/">Profile 2026</a> <a href="/">Back</a></nav>` +
       `<div class="w-hero-title">` +
         `<h1 class="wrap">${h1Html}</h1>` +
         `<div class="w-hero-title-arrow"><svg viewBox="0 0 46 54"><path d="M23,53.034c-12.188,0-22.104-9.916-22.104-22.104V23.07C0.896,10.882,10.812,0.966,23,0.966c12.188,0,22.104,9.916,22.104,22.104v7.859C45.104,43.118,35.188,53.034,23,53.034z M23,1.949c-11.646,0-21.122,9.475-21.122,21.122v7.859c0,11.646,9.475,21.122,21.122,21.122s21.122-9.476,21.122-21.122V23.07C44.122,11.424,34.646,1.949,23,1.949z"/><polygon points="26.752,25.056 23.003,21.3 23,21.303 22.997,21.3 19.074,25.229 19.716,25.871 22.528,23.059 22.528,32.7 23.436,32.7 23.436,23.023 26.284,25.871 26.752,25.403 26.926,25.229"/></svg></div>` +

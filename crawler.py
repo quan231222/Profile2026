@@ -3,8 +3,8 @@ import re
 import json
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
-
-BASE_URL = "https://camillemormal.com"
+# Original archive source
+BASE_URL = ""
 OUTPUT_DIR = "/Users/wuanngo/Profile"
 STATIC_DIR = os.path.join(OUTPUT_DIR, "static")
 

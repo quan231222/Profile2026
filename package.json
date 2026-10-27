@@ -1,7 +1,7 @@
 {
-  "name": "camille-mormal-clone",
+  "name": "profile-2026",
   "version": "1.0.0",
-  "description": "1:1 complete clone of camillemormal.com portfolio",
+  "description": "Profile 2026 portfolio with admin CMS",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

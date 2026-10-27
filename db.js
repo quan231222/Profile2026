@@ -118,13 +118,12 @@ function initDb() {
     ];
     initialClients.forEach((name, i) => clientStmt.run(name, i + 1));
 
-    const contactStmt = db.prepare('INSERT INTO about_contacts (label, url, order_index) VALUES (?, ?, ?)');
     const initialContacts = [
-      ['Email', 'mailto:camimormal@gmail.com', 1],
-      ['Twitter', 'https://twitter.com/CamilleMormal', 2],
-      ['Linkedin', 'https://www.linkedin.com/in/camimormal', 3],
-      ['Instagram', 'https://www.instagram.com/cami.channn', 4],
-      ['Behance', 'https://www.behance.net/CMormal', 5],
+      ['Email', 'mailto:contact@example.com', 1],
+      ['Twitter', 'https://x.com/', 2],
+      ['Linkedin', 'https://www.linkedin.com/', 3],
+      ['Instagram', 'https://www.instagram.com/', 4],
+      ['Behance', 'https://www.behance.net/', 5],
     ];
     for (const c of initialContacts) {
       contactStmt.run(...c);

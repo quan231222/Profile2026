@@ -233,7 +233,7 @@ function renderMobileAboutHtml(data) {
   const headlineHtml = hero.headline || 'Senior Designer<br>&amp; Art Director';
 
   return `<div id="a" class="page">` +
-    `<nav class="nav wrap"><a href="/">Camille Mormal</a> <a href="/">Back</a></nav>` +
+    `<nav class="nav wrap"><a href="/">Profile 2026</a> <a href="/">Back</a></nav>` +
     `<header id="a-hero" class="wrap wrap-t">` +
       `<h1>${headlineHtml}</h1>` +
       `<p class="a-mtl">${escapeHtml(hero.paragraph1)}</p>` +
@@ -243,9 +243,9 @@ function renderMobileAboutHtml(data) {
     `${awardSectionM}` +
     `${clientSectionM}` +
     `${creditSectionM}` +
-    `<div id="a-img" class="a-mtxl" style="aspect-ratio: 856/1150;"><img class="_lz" src="data:," data-src="/static/media/m/about/cami.jpg?1" alt="Portrait of Camille Mormal" width="856" height="1150"></div>` +
+    `<div id="a-img" class="a-mtxl" style="aspect-ratio: 856/1150;"><img class="_lz" src="data:," data-src="/static/media/m/about/cami.jpg?1" alt="Portrait" width="856" height="1150"></div>` +
     `<footer class="footer wrap">` +
-      `<div class="footer-title">Camille Mormal<br>Portfolio</div>` +
+      `<div class="footer-title">Profile 2026<br>Portfolio</div>` +
       `<ul class="footer-list">` +
         `<li><a class="footer-list-cta" href="/"><div>Work</div><div><svg viewBox="0 0 12 56"><polygon points="7.944,31.752 11.7,28.003 11.697,28 11.7,27.997 7.771,24.074 7.129,24.716 9.941,27.528 0.3,27.528 0.3,28.436 9.977,28.436 7.129,31.284 7.597,31.752 7.771,31.926 "/></svg></div></a></li>` +
         `<li><div class="footer-list-touch footer-list-cta"><div>Get In Touch</div><div><svg viewBox="0 0 12 56"><rect x="0.3" y="27.561" width="11.4" height="0.878"/><rect class="footer-list-touch-cross-vertical" x="5.561" y="22.3" width="0.878" height="11.4"/></svg></div></div></li>` +

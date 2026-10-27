@@ -1,6 +1,6 @@
-# Camille Mormal Portfolio Clone (1:1 Complete Replica with Database & CMS)
+# Profile 2026 Portfolio (Complete Replica with SQLite Database & Admin CMS)
 
-A complete, 1:1 offline & online clone of [camillemormal.com](https://camillemormal.com/), replicating every single detail:
+A complete offline & online interactive portfolio for **Profile 2026**, featuring:
 - **WebGL Shader Engine**: Custom Three.js/WebGL canvas shaders, post-processing, mouse tracking, distortion transitions, and interactive image morphs.
 - **Micro-Animations & Smooth Physics**: Precise damping, custom RAF loops, kinetic inertia scrolling, and interactive timeline controls.
 - **Typography & Font**: Custom font `s.woff2` with pixel-perfect responsive font sizing (`vh`/`vw` aspect-ratio clamps).
