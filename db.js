@@ -422,6 +422,10 @@ function updateProject(oldSlug, data) {
     cleanOldSlug
   );
 
+  if (newSlug !== cleanOldSlug) {
+    db.prepare('UPDATE projects SET next_slug = ? WHERE next_slug = ?').run(newSlug, cleanOldSlug);
+  }
+
   return getProjectBySlug(newSlug);
 }
 

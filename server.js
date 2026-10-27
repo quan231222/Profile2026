@@ -283,6 +283,32 @@ const server = http.createServer((req, res) => {
           }
         }
 
+        // 1.5 Dynamically rebuild payload.routes for all DB projects
+        payload.routes = {
+          '/': { page: 'ho', index: 0 },
+          '/about': { page: 'ab', index: 0 }
+        };
+        allDbProjects.forEach((proj, idx) => {
+          payload.routes['/' + proj.slug] = {
+            page: 'wo',
+            index: idx
+          };
+        });
+
+        // Prune stale cache and data entries for obsolete project slugs (keep root and /about)
+        if (payload.cache) {
+          const keepCache = { '/': payload.cache['/'] };
+          if (payload.cache['/about']) keepCache['/about'] = payload.cache['/about'];
+          payload.cache = keepCache;
+        }
+        if (payload.data) {
+          const keepData = {};
+          if (payload.data['/']) keepData['/'] = payload.data['/'];
+          if (payload.data['/about']) keepData['/about'] = payload.data['/about'];
+          if (payload.data.load) keepData.load = payload.data.load;
+          payload.data = keepData;
+        }
+
         allDbProjects.forEach(proj => {
           const projKey = '/' + proj.slug;
           const dynamicProjHtml = device === 'm'
@@ -367,8 +393,27 @@ const server = http.createServer((req, res) => {
     }
   }
 
-  // --- 3. HTML route requests (/ or /about or /gucci, etc.) ---
+  // --- 3. HTML route requests (/ or /about or /guardian, etc.) ---
   const route = pathname.replace(/^\/+|\/+$/g, '');
+
+  // 3.1 Dynamic project HTML shell if route matches any project in database
+  if (route && route !== 'admin') {
+    const dbProj = getProjectBySlug(route);
+    if (dbProj) {
+      const allDbProjects = getProjects();
+      const shellHtml = generateProjectHtmlShell(dbProj, allDbProjects);
+      const buf = Buffer.from(shellHtml, 'utf-8');
+      res.writeHead(200, {
+        'Content-Type': 'text/html; charset=utf-8',
+        'Content-Length': buf.length,
+        'Cache-Control': 'no-cache',
+      });
+      res.end(buf);
+      return;
+    }
+  }
+
+  // 3.2 Static HTML files for / or /about
   let htmlPath;
   if (!route) {
     htmlPath = path.join(ROOT_DIR, 'index.html');
@@ -384,20 +429,6 @@ const server = http.createServer((req, res) => {
       'Cache-Control': 'no-cache',
     });
     fs.createReadStream(htmlPath).pipe(res);
-    return;
-  }
-
-  // Dynamic project HTML shell if route matches a project in database
-  const dbProj = getProjectBySlug(route);
-  if (dbProj) {
-    const shellHtml = generateProjectHtmlShell(dbProj);
-    const buf = Buffer.from(shellHtml, 'utf-8');
-    res.writeHead(200, {
-      'Content-Type': 'text/html; charset=utf-8',
-      'Content-Length': buf.length,
-      'Cache-Control': 'no-cache',
-    });
-    res.end(buf);
     return;
   }
 
