@@ -90,7 +90,7 @@ function renderDesktopHomeHtml(projects) {
       ? p.sections
       : (typeof p.sections === 'string' ? JSON.parse(p.sections || '[]') : []);
     const count = secs.length;
-    return `<li><div class="h-title"><a class="h-title-a" href="/${p.slug}" aria-label="View project ${escapeHtml(p.title)}"><span class="h-title-text">${escapeHtml(p.title)}<span class="h-title-bar"><span class="h-title-bar-fill"></span></span></span></a></div><div class="h-title-no exp"><div>${count}</div></div></li>`;
+    return `<li><div class="h-title"><a class="h-title-a" href="/${p.slug}" aria-label="View project ${escapeHtml(p.title)}"><span class="h-title-text">${escapeHtml(p.title)}</span><span class="h-title-bar"><span class="h-title-bar-fill"></span></span></a></div><div class="h-title-no exp"><div>${count}</div></div></li>`;
   }).join('');
 
   const pgnDivs = projects.map((_, i) => `<div>${i + 1}</div>`).join('');
