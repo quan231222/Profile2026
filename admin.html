@@ -115,6 +115,18 @@
       transform: translateY(-1px);
     }
 
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    .btn-danger:hover {
+      background: rgba(239, 68, 68, 0.25);
+      border-color: rgba(239, 68, 68, 0.5);
+      color: #fca5a5;
+    }
+
     /* Layout */
     .container {
       max-width: 1240px;
@@ -843,8 +855,9 @@
         <div class="panel-header">
           <div>
             <h2>Quản lý các Dự án (Case Studies)</h2>
-            <p>Dữ liệu 8 dự án được lưu trữ trong SQLite và nạp mượt mà qua WebGL Engine</p>
+            <p id="projects-count-desc">Dữ liệu các dự án được lưu trữ trong SQLite và nạp mượt mà qua WebGL Engine</p>
           </div>
+          <button class="btn btn-primary" onclick="openCreateProjectModal()">+ Thêm Dự án mới</button>
         </div>
         <div id="projects-container" class="projects-grid"></div>
       </div>
@@ -1287,9 +1300,14 @@
       }
     }
 
+    let isCreatingNewProject = false;
+
     function renderProjects() {
       const container = document.getElementById('projects-container');
       container.innerHTML = '';
+      const descEl = document.getElementById('projects-count-desc');
+      if (descEl) descEl.textContent = `Hiện có ${currentProjects.length} dự án trong SQLite database (WebGL Engine)`;
+
       currentProjects.forEach(p => {
         const card = document.createElement('div');
         card.className = 'project-card';
@@ -1301,9 +1319,10 @@
             <h3 class="project-card-title">${p.title}</h3>
             <div class="project-card-meta">#${p.order_index} • /${p.slug} • ${secCount} ảnh</div>
             <p class="project-card-desc">${p.description}</p>
-            <div class="project-card-actions">
+            <div class="project-card-actions" style="display:flex;gap:8px;flex-wrap:wrap;">
               <a href="/${p.slug}" target="_blank" class="btn btn-secondary" style="padding:6px 12px;font-size:0.8rem;">Xem trang</a>
               <button class="btn btn-primary" style="padding:6px 12px;font-size:0.8rem;" onclick="editProject('${p.slug}')">Chỉnh sửa</button>
+              <button class="btn btn-danger" style="padding:6px 12px;font-size:0.8rem;" onclick="confirmDeleteProject('${p.slug}', '${(p.title || '').replace(/'/g, "\\'")}')">Xoá</button>
             </div>
           </div>
         `;
@@ -1311,7 +1330,45 @@
       });
     }
 
+    function openCreateProjectModal() {
+      isCreatingNewProject = true;
+      editingProject = {
+        title: '',
+        slug: '',
+        role: 'Art Direction & Design',
+        description: '',
+        team_prefix: 'Done with',
+        team_name: '',
+        next_slug: currentProjects.length > 0 ? currentProjects[0].slug : 'gucci',
+        next_title: currentProjects.length > 0 ? currentProjects[0].title : 'Next Project',
+        h1_lines: [],
+        sections: [],
+        home_tex: '',
+        hero_tex: ''
+      };
+
+      document.getElementById('modal-project-title').textContent = 'Thêm Dự Án Mới';
+      document.getElementById('proj-title').value = '';
+      const slugInput = document.getElementById('proj-slug');
+      slugInput.value = '';
+      slugInput.readOnly = false;
+      slugInput.style.opacity = '1';
+      slugInput.placeholder = 'ví dụ: apple-vision-pro (để trống sẽ tự tạo từ tên)';
+
+      document.getElementById('proj-role').value = 'Art Direction & Design';
+      document.getElementById('proj-desc').value = '';
+      document.getElementById('proj-team-prefix').value = 'Done with';
+      document.getElementById('proj-team-name').value = '';
+      document.getElementById('proj-next-slug').value = editingProject.next_slug;
+      document.getElementById('proj-next-title').value = editingProject.next_title;
+      document.getElementById('proj-h1').value = '';
+
+      renderGalleryEditor();
+      document.getElementById('project-modal').classList.add('active');
+    }
+
     function editProject(slug) {
+      isCreatingNewProject = false;
       editingProject = currentProjects.find(p => p.slug === slug);
       if (!editingProject) return;
 
@@ -1320,7 +1377,11 @@
 
       document.getElementById('modal-project-title').textContent = 'Chỉnh sửa: ' + editingProject.title;
       document.getElementById('proj-title').value = editingProject.title || '';
-      document.getElementById('proj-slug').value = editingProject.slug || '';
+      const slugInput = document.getElementById('proj-slug');
+      slugInput.value = editingProject.slug || '';
+      slugInput.readOnly = true;
+      slugInput.style.opacity = '0.7';
+
       document.getElementById('proj-role').value = editingProject.role || '';
       document.getElementById('proj-desc').value = editingProject.description || '';
       document.getElementById('proj-team-prefix').value = editingProject.team_prefix || 'Done with';
@@ -1331,6 +1392,24 @@
 
       renderGalleryEditor();
       document.getElementById('project-modal').classList.add('active');
+    }
+
+    async function confirmDeleteProject(slug, title) {
+      if (!confirm(`Bạn có chắc chắn muốn xoá vĩnh viễn dự án "${title}" (/${slug}) không?\nHành động này không thể hoàn tác.`)) {
+        return;
+      }
+      try {
+        const res = await fetch('/api/projects/' + slug, { method: 'DELETE' });
+        const result = await res.json();
+        if (result.success) {
+          showToast('🗑️ Đã xoá dự án /' + slug + ' thành công!');
+          loadProjects();
+        } else {
+          showToast('Lỗi khi xoá: ' + (result.error || ''), 'error');
+        }
+      } catch (err) {
+        showToast('Lỗi kết nối khi xoá dự án!', 'error');
+      }
     }
 
     function closeProjectModal() {
@@ -1539,7 +1618,17 @@
     async function saveProjectData() {
       if (!editingProject) return;
 
-      editingProject.title = document.getElementById('proj-title').value;
+      const title = document.getElementById('proj-title').value.trim();
+      if (!title) {
+        showToast('Vui lòng nhập tên dự án!', 'error');
+        return;
+      }
+
+      editingProject.title = title;
+      if (isCreatingNewProject) {
+        const slugVal = document.getElementById('proj-slug').value.trim();
+        if (slugVal) editingProject.slug = slugVal;
+      }
       editingProject.role = document.getElementById('proj-role').value;
       editingProject.description = document.getElementById('proj-desc').value;
       editingProject.team_prefix = document.getElementById('proj-team-prefix').value;
@@ -1548,17 +1637,30 @@
       editingProject.next_title = document.getElementById('proj-next-title').value;
       
       const h1Lines = document.getElementById('proj-h1').value.split('\n').map(l => l.trim()).filter(Boolean);
-      editingProject.h1_lines = h1Lines;
+      editingProject.h1_lines = h1Lines.length > 0 ? h1Lines : [title];
+
+      // Auto assign cover/hero if not set
+      if (!editingProject.home_tex && editingProject.sections && editingProject.sections.length > 0) {
+        const firstSec = editingProject.sections[0];
+        const firstSrc = firstSec.large ? firstSec.large.src : (typeof firstSec === 'string' ? firstSec : '');
+        if (firstSrc) {
+          editingProject.home_tex = firstSrc;
+          editingProject.hero_tex = firstSrc;
+        }
+      }
 
       try {
-        const res = await fetch('/api/projects/' + editingProject.slug, {
-          method: 'POST',
+        const url = isCreatingNewProject ? '/api/projects' : ('/api/projects/' + editingProject.slug);
+        const method = 'POST';
+        const res = await fetch(url, {
+          method,
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(editingProject)
         });
         const result = await res.json();
         if (result.success) {
-          showToast('✅ Đã lưu dự án ' + editingProject.slug + ' (' + (editingProject.sections || []).length + ' ảnh) vào SQLite!');
+          const actionText = isCreatingNewProject ? 'Đã thêm dự án mới' : 'Đã cập nhật dự án';
+          showToast(`✅ ${actionText} thành công!`);
           closeProjectModal();
           loadProjects();
         } else {

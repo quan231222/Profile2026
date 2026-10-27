@@ -8,11 +8,13 @@ const {
   updateAboutData,
   getProjects,
   getProjectBySlug,
-  updateProject
+  updateProject,
+  createProject,
+  deleteProject
 } = require('./db');
 
 const { renderDesktopAboutHtml, renderMobileAboutHtml } = require('./renderAbout');
-const { renderDesktopProjectHtml, renderMobileProjectHtml } = require('./renderProject');
+const { renderDesktopProjectHtml, renderMobileProjectHtml, generateProjectHtmlShell } = require('./renderProject');
 const {
   cleanTexturePath,
   getRandomIntroTextures,
@@ -125,12 +127,27 @@ const server = http.createServer((req, res) => {
     }
   }
 
-  // --- API: /api/projects (GET all, POST update) ---
+  // --- API: /api/projects (GET all, POST create) ---
   if (pathname === '/api/projects') {
     if (req.method === 'GET') {
       const projs = getProjects();
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
       res.end(JSON.stringify(projs));
+      return;
+    } else if (req.method === 'POST') {
+      let bodyStr = '';
+      req.on('data', chunk => { bodyStr += chunk; });
+      req.on('end', () => {
+        try {
+          const parsed = JSON.parse(bodyStr);
+          const created = createProject(parsed);
+          res.writeHead(201, { 'Content-Type': 'application/json; charset=utf-8' });
+          res.end(JSON.stringify({ success: true, project: created }));
+        } catch (err) {
+          res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
+          res.end(JSON.stringify({ success: false, error: err.message }));
+        }
+      });
       return;
     }
   }
@@ -161,6 +178,16 @@ const server = http.createServer((req, res) => {
           res.end(JSON.stringify({ success: false, error: err.message }));
         }
       });
+      return;
+    } else if (req.method === 'DELETE') {
+      const result = deleteProject(slug);
+      if (!result.success) {
+        res.writeHead(404, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify(result));
+        return;
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify(result));
       return;
     }
   }
@@ -345,6 +372,20 @@ const server = http.createServer((req, res) => {
       'Cache-Control': 'no-cache',
     });
     fs.createReadStream(htmlPath).pipe(res);
+    return;
+  }
+
+  // Dynamic project HTML shell if route matches a project in database
+  const dbProj = getProjectBySlug(route);
+  if (dbProj) {
+    const shellHtml = generateProjectHtmlShell(dbProj);
+    const buf = Buffer.from(shellHtml, 'utf-8');
+    res.writeHead(200, {
+      'Content-Type': 'text/html; charset=utf-8',
+      'Content-Length': buf.length,
+      'Cache-Control': 'no-cache',
+    });
+    res.end(buf);
     return;
   }
 

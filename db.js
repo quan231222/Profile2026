@@ -389,11 +389,72 @@ function updateProject(slug, data) {
   return getProjectBySlug(cleanSlug);
 }
 
+function createProject(data) {
+  let slug = (data.slug || data.title || 'new-project')
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9_-]/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+
+  if (!slug) slug = 'project-' + Date.now();
+
+  let candidateSlug = slug;
+  let counter = 1;
+  while (db.prepare('SELECT COUNT(*) as count FROM projects WHERE slug = ?').get(candidateSlug).count > 0) {
+    candidateSlug = `${slug}-${++counter}`;
+  }
+  slug = candidateSlug;
+
+  const maxOrder = db.prepare('SELECT MAX(order_index) as max_order FROM projects').get().max_order || 0;
+  const orderIndex = (data.order_index && Number(data.order_index)) || (maxOrder + 1);
+
+  const homeTex = data.home_tex || '/static/media/d/work/gucci/home';
+  const heroTex = data.hero_tex || homeTex;
+  const h1Lines = Array.isArray(data.h1_lines) ? data.h1_lines : (data.title ? [data.title] : ['New Project']);
+  const sections = Array.isArray(data.sections) ? data.sections : [];
+
+  db.prepare(`
+    INSERT INTO projects (
+      slug, title, h1_lines, role, description, team_prefix, team_name,
+      home_tex, hero_tex, next_slug, next_title, order_index, is_visible, sections
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `).run(
+    slug,
+    data.title || 'New Project',
+    JSON.stringify(h1Lines),
+    data.role || 'Art Direction & Design',
+    data.description || 'Project description here...',
+    data.team_prefix || 'Done with',
+    data.team_name || '',
+    homeTex,
+    heroTex,
+    data.next_slug || 'gucci',
+    data.next_title || 'Next Project',
+    orderIndex,
+    data.is_visible !== false ? 1 : 0,
+    JSON.stringify(sections)
+  );
+
+  return getProjectBySlug(slug);
+}
+
+function deleteProject(slug) {
+  const cleanSlug = slug.replace(/^\/+/, '');
+  const existing = getProjectBySlug(cleanSlug);
+  if (!existing) return { success: false, error: 'Project not found' };
+
+  db.prepare('DELETE FROM projects WHERE slug = ?').run(cleanSlug);
+  return { success: true, slug: cleanSlug };
+}
+
 module.exports = {
   db,
   getAboutData,
   updateAboutData,
   getProjects,
   getProjectBySlug,
-  updateProject
+  updateProject,
+  createProject,
+  deleteProject
 };
