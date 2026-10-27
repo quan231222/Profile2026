@@ -256,8 +256,8 @@ const server = http.createServer((req, res) => {
           payload.data.load.texL = introTextures.length;
         }
 
-        // 1.4 Dynamically randomize Work Page projects on visit/refresh
-        const homeProjects = getRandomizedProjects(allDbProjects);
+        // 1.4 Maintain fixed order for Work Page projects (sorted by order_index in DB)
+        const homeProjects = allDbProjects;
         if (payload.data && payload.data['/']) {
           payload.data['/'].tex = homeProjects.map(p => cleanTexturePath(p.home_tex));
           payload.data['/'].texL = homeProjects.length;
