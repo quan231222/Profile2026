@@ -29,7 +29,8 @@ function renderDesktopProjectHtml(project, totalProjects = 8) {
     const bg = l.bg || '#141414';
     const src = l.src || (typeof sec === 'string' ? sec : '');
     const alt = escapeHtml(l.alt || project.title || '');
-    return `<div ${classAttr} style="aspect-ratio: ${aspect};"><div style="background-color: ${bg};"></div><img class="_lz" src="data:," data-src="${src}" alt="${alt}" width="1800" height="1010"></div>`;
+    const fitStyle = l.fit === 'contain' ? 'style="object-fit: contain;" ' : '';
+    return `<div ${classAttr} style="aspect-ratio: ${aspect};"><div style="background-color: ${bg};"></div><img class="_lz" ${fitStyle}src="data:," data-src="${src}" alt="${alt}" width="1800" height="1010"></div>`;
   }).join('');
 
   // Small Preview Items (Carousel thumbnails on right)
@@ -105,11 +106,15 @@ function renderMobileProjectHtml(project) {
     const aspect = l.aspect || '1800/1010';
     const src = l.src || (typeof sec === 'string' ? sec : '');
     const alt = escapeHtml(l.alt || project.title || '');
-    return `<div class="${marginClass}" style="aspect-ratio: ${aspect};"><img class="_lz" src="data:," data-src="${src}" alt="${alt}"></div>`;
+    const fitStyle = l.fit === 'contain' ? ' style="object-fit: contain;"' : '';
+    return `<div class="${marginClass}" style="aspect-ratio: ${aspect};"><img class="_lz"${fitStyle} src="data:," data-src="${src}" alt="${alt}"></div>`;
   }).join('');
 
   const nextSlug = project.next_slug ? project.next_slug.replace(/^\/+/, '') : 'gucci';
-  const heroImg = `/static/media/m/work/${project.slug}/hero.jpg?1`;
+  let heroImg = project.hero_tex || project.home_tex || `/static/media/m/work/${project.slug}/hero.jpg?1`;
+  if (heroImg && !heroImg.includes('?') && !heroImg.startsWith('data:')) {
+    heroImg += '?1';
+  }
 
   return `<div class="w page">` +
     `<header class="w-hero" style="background-image: url('${heroImg}');">` +

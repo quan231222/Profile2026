@@ -582,11 +582,43 @@
 
     .gallery-card-thumb {
       width: 140px;
-      height: 90px;
+      height: 100px;
       border-radius: 6px;
-      object-fit: cover;
-      background: #141414;
-      border: 1px solid rgba(255,255,255,0.08);
+      object-fit: contain;
+      background: #0c0c0e;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .aspect-presets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 6px;
+    }
+
+    .btn-preset {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      padding: 3px 7px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-preset:hover {
+      background: rgba(96, 165, 250, 0.18);
+      border-color: #60a5fa;
+      color: #93c5fd;
+    }
+
+    .btn-preset.active {
+      background: #3b82f6;
+      border-color: #3b82f6;
+      color: #fff;
+      font-weight: 600;
     }
 
     .gallery-card-fields {
@@ -880,7 +912,10 @@
       <div class="grid-2">
         <div class="form-group">
           <label>Đường dẫn Slug (URL)</label>
-          <input type="text" id="proj-slug" readonly style="opacity:0.7">
+          <input type="text" id="proj-slug" placeholder="vi-du: ten-du-an">
+          <small style="display:block;font-size:0.75rem;color:var(--text-muted);margin-top:4px;">
+            Đường dẫn truy cập trang chi tiết (ví dụ: /gucci). Có thể chỉnh sửa slug tự do.
+          </small>
         </div>
         <div class="form-group">
           <label>Vai trò (Role)</label>
@@ -914,6 +949,76 @@
       <div class="form-group">
         <label>Các dòng tiêu đề lớn (Mỗi dòng một tiêu đề)</label>
         <textarea id="proj-h1" rows="3" placeholder="Dòng 1&#10;Dòng 2&#10;Dòng 3"></textarea>
+      </div>
+
+      <!-- Hình ảnh đầu tiên khi click vào dự án & Ảnh bìa trang chủ -->
+      <div style="background:var(--card-inner);border:1px solid var(--border);border-radius:10px;padding:20px;margin-top:20px;margin-bottom:24px;">
+        <div style="margin-bottom:14px;">
+          <h4 style="font-size:1.05rem;font-weight:700;color:#fff;">Ảnh mở đầu khi xem dự án & Ảnh bìa trang chủ</h4>
+          <p style="color:var(--text-muted);font-size:0.85rem;margin-top:2px;">
+            Hình ảnh đầu tiên hiển thị hiệu ứng 3D khi bấm vào dự án và ảnh hiển thị ở slider trang chủ.
+          </p>
+        </div>
+
+        <div class="grid-2" style="gap:16px;">
+          <!-- Hero Texture (Hình ảnh đầu tiên khi click vào dự án) -->
+          <div style="background:rgba(0,0,0,0.3);border:1px solid rgba(96,165,250,0.25);border-radius:8px;padding:16px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+              <label style="margin:0;font-size:0.85rem;color:#60a5fa;font-weight:700;">
+                🌟 Hình ảnh đầu tiên khi click vào dự án (Hero Texture)
+              </label>
+              <span style="font-size:0.72rem;background:rgba(96,165,250,0.15);color:#93c5fd;padding:2px 6px;border-radius:4px;">Mở đầu dự án</span>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <img id="preview-proj-hero" src="" alt="Hero Preview" 
+                   style="width:130px;height:85px;object-fit:contain;background:#0b0b0e;border:1px solid var(--border);border-radius:6px;flex-shrink:0;" 
+                   onerror="this.src='/static/media/d/work/gucci/hero.jpg'">
+              <div style="flex:1;">
+                <input type="text" id="proj-hero-tex" placeholder="/static/media/..." 
+                       style="font-size:0.85rem;padding:8px 10px;" 
+                       oninput="document.getElementById('preview-proj-hero').src=this.value; if(editingProject) editingProject.hero_tex=this.value;">
+                <div style="display:flex;gap:8px;margin-top:8px;">
+                  <input type="file" id="upload-hero-input" accept="image/*" style="display:none;" onchange="handleHeroUpload(event)">
+                  <button type="button" class="btn btn-secondary" style="font-size:0.8rem;padding:6px 12px;" onclick="document.getElementById('upload-hero-input').click()">
+                    ⬆ Tải ảnh lên
+                  </button>
+                  <button type="button" class="btn btn-secondary" style="font-size:0.8rem;padding:6px 12px;" onclick="useFirstGalleryAsHero()">
+                    Lấy từ ảnh #1
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Home Texture (Ảnh bìa trang chủ) -->
+          <div style="background:rgba(0,0,0,0.3);border:1px solid rgba(52,211,153,0.25);border-radius:8px;padding:16px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+              <label style="margin:0;font-size:0.85rem;color:#34d399;font-weight:700;">
+                🖼️ Ảnh bìa trang chủ (Home Slider Texture)
+              </label>
+              <span style="font-size:0.72rem;background:rgba(52,211,153,0.15);color:#6ee7b7;padding:2px 6px;border-radius:4px;">Trang Work</span>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <img id="preview-proj-home" src="" alt="Home Preview" 
+                   style="width:130px;height:85px;object-fit:contain;background:#0b0b0e;border:1px solid var(--border);border-radius:6px;flex-shrink:0;" 
+                   onerror="this.src='/static/media/d/work/gucci/home.jpg'">
+              <div style="flex:1;">
+                <input type="text" id="proj-home-tex" placeholder="/static/media/..." 
+                       style="font-size:0.85rem;padding:8px 10px;" 
+                       oninput="document.getElementById('preview-proj-home').src=this.value; if(editingProject) editingProject.home_tex=this.value;">
+                <div style="display:flex;gap:8px;margin-top:8px;">
+                  <input type="file" id="upload-home-input" accept="image/*" style="display:none;" onchange="handleHomeUpload(event)">
+                  <button type="button" class="btn btn-secondary" style="font-size:0.8rem;padding:6px 12px;" onclick="document.getElementById('upload-home-input').click()">
+                    ⬆ Tải ảnh lên
+                  </button>
+                  <button type="button" class="btn btn-secondary" style="font-size:0.8rem;padding:6px 12px;" onclick="useFirstGalleryAsHome()">
+                    Lấy từ ảnh #1
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Gallery Image Management -->
@@ -1330,8 +1435,11 @@
       });
     }
 
+    let editingProjectOldSlug = '';
+
     function openCreateProjectModal() {
       isCreatingNewProject = true;
+      editingProjectOldSlug = '';
       editingProject = {
         title: '',
         slug: '',
@@ -1363,6 +1471,12 @@
       document.getElementById('proj-next-title').value = editingProject.next_title;
       document.getElementById('proj-h1').value = '';
 
+      // Reset Hero & Home textures
+      document.getElementById('proj-hero-tex').value = '';
+      document.getElementById('preview-proj-hero').src = '';
+      document.getElementById('proj-home-tex').value = '';
+      document.getElementById('preview-proj-home').src = '';
+
       renderGalleryEditor();
       document.getElementById('project-modal').classList.add('active');
     }
@@ -1374,13 +1488,15 @@
 
       // Deep clone sections so modifications don't mutate before saving
       editingProject = JSON.parse(JSON.stringify(editingProject));
+      editingProjectOldSlug = editingProject.slug || slug;
 
       document.getElementById('modal-project-title').textContent = 'Chỉnh sửa: ' + editingProject.title;
       document.getElementById('proj-title').value = editingProject.title || '';
+      
       const slugInput = document.getElementById('proj-slug');
       slugInput.value = editingProject.slug || '';
-      slugInput.readOnly = true;
-      slugInput.style.opacity = '0.7';
+      slugInput.readOnly = false;
+      slugInput.style.opacity = '1';
 
       document.getElementById('proj-role').value = editingProject.role || '';
       document.getElementById('proj-desc').value = editingProject.description || '';
@@ -1390,8 +1506,102 @@
       document.getElementById('proj-next-title').value = editingProject.next_title || '';
       document.getElementById('proj-h1').value = (editingProject.h1_lines || []).join('\n');
 
+      // Populate Hero & Home textures
+      const heroVal = editingProject.hero_tex || '';
+      const homeVal = editingProject.home_tex || '';
+      document.getElementById('proj-hero-tex').value = heroVal;
+      document.getElementById('preview-proj-hero').src = heroVal;
+      document.getElementById('proj-home-tex').value = homeVal;
+      document.getElementById('preview-proj-home').src = homeVal;
+
       renderGalleryEditor();
       document.getElementById('project-modal').classList.add('active');
+    }
+
+    async function handleHeroUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file || !editingProject) return;
+      showToast('Đang tải ảnh mở đầu (hero)...');
+      try {
+        const { base64 } = await readFileAndMetadata(file);
+        const res = await fetch('/api/upload', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ data: base64, name: 'hero_' + file.name })
+        });
+        const json = await res.json();
+        if (json.success && json.url) {
+          editingProject.hero_tex = json.url;
+          document.getElementById('proj-hero-tex').value = json.url;
+          document.getElementById('preview-proj-hero').src = json.url;
+          showToast('✅ Đã tải ảnh mở đầu dự án thành công!');
+        } else {
+          showToast('Lỗi khi tải ảnh hero: ' + (json.error || ''), 'error');
+        }
+      } catch (e) {
+        showToast('Lỗi upload ảnh hero: ' + e.message, 'error');
+      }
+      event.target.value = '';
+    }
+
+    async function handleHomeUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file || !editingProject) return;
+      showToast('Đang tải ảnh bìa trang chủ (home)...');
+      try {
+        const { base64 } = await readFileAndMetadata(file);
+        const res = await fetch('/api/upload', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ data: base64, name: 'home_' + file.name })
+        });
+        const json = await res.json();
+        if (json.success && json.url) {
+          editingProject.home_tex = json.url;
+          document.getElementById('proj-home-tex').value = json.url;
+          document.getElementById('preview-proj-home').src = json.url;
+          showToast('✅ Đã tải ảnh bìa trang chủ thành công!');
+        } else {
+          showToast('Lỗi khi tải ảnh bìa: ' + (json.error || ''), 'error');
+        }
+      } catch (e) {
+        showToast('Lỗi upload ảnh bìa: ' + e.message, 'error');
+      }
+      event.target.value = '';
+    }
+
+    function useFirstGalleryAsHero() {
+      if (!editingProject || !editingProject.sections || editingProject.sections.length === 0) {
+        showToast('Chưa có ảnh nào trong bộ sưu tập!', 'error');
+        return;
+      }
+      const firstSec = editingProject.sections[0];
+      const firstSrc = firstSec.large ? firstSec.large.src : (typeof firstSec === 'string' ? firstSec : '');
+      if (!firstSrc) {
+        showToast('Ảnh #1 chưa có đường dẫn!', 'error');
+        return;
+      }
+      editingProject.hero_tex = firstSrc;
+      document.getElementById('proj-hero-tex').value = firstSrc;
+      document.getElementById('preview-proj-hero').src = firstSrc;
+      showToast('✅ Đã gán ảnh #1 làm ảnh mở đầu (Hero Texture)!');
+    }
+
+    function useFirstGalleryAsHome() {
+      if (!editingProject || !editingProject.sections || editingProject.sections.length === 0) {
+        showToast('Chưa có ảnh nào trong bộ sưu tập!', 'error');
+        return;
+      }
+      const firstSec = editingProject.sections[0];
+      const firstSrc = firstSec.large ? firstSec.large.src : (typeof firstSec === 'string' ? firstSec : '');
+      if (!firstSrc) {
+        showToast('Ảnh #1 chưa có đường dẫn!', 'error');
+        return;
+      }
+      editingProject.home_tex = firstSrc;
+      document.getElementById('proj-home-tex').value = firstSrc;
+      document.getElementById('preview-proj-home').src = firstSrc;
+      showToast('✅ Đã gán ảnh #1 làm ảnh bìa slider trang chủ!');
     }
 
     async function confirmDeleteProject(slug, title) {
@@ -1415,6 +1625,7 @@
     function closeProjectModal() {
       document.getElementById('project-modal').classList.remove('active');
       editingProject = null;
+      editingProjectOldSlug = '';
     }
 
     // --- Project Gallery Image Editor ---
@@ -1431,33 +1642,62 @@
         const src = l.src || '';
         const alt = l.alt || '';
         const aspect = l.aspect || '1800/1010';
+        const fit = l.fit || 'contain';
         const bg = l.bg || '#141414';
         const spacingClass = l.class || (idx === 0 ? '' : 'w-s-mts');
 
         const card = document.createElement('div');
         card.className = 'gallery-card';
         card.innerHTML = `
-          <img class="gallery-card-thumb" src="${src}" alt="Preview" onerror="this.src='/static/media/d/work/gucci/section/small/G0.jpg'">
+          <div style="position:relative;">
+            <img class="gallery-card-thumb" src="${src}" alt="Preview #${idx + 1}" onerror="this.src='/static/media/d/work/gucci/section/small/G0.jpg'">
+            <span style="position:absolute;bottom:4px;right:4px;font-size:0.68rem;background:rgba(0,0,0,0.7);padding:1px 5px;border-radius:3px;color:#cbd5e1;">${aspect}</span>
+          </div>
           <div>
-            <div style="font-size:0.8rem;font-weight:700;color:#60a5fa;margin-bottom:8px;">Ảnh #${idx + 1}</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+              <span style="font-size:0.8rem;font-weight:700;color:#60a5fa;">Ảnh #${idx + 1}</span>
+              <span style="font-size:0.75rem;color:var(--text-muted);">
+                ${fit === 'contain' ? '✓ Fix ngang & thấy trọn chiều dọc' : 'Phủ kín khung'}
+              </span>
+            </div>
             <div class="gallery-card-fields">
               <div>
                 <label style="font-size:0.75rem;">Đường dẫn ảnh (URL / Path)</label>
-                <input type="text" value="${src}" style="padding:8px 10px;font-size:0.85rem;" onchange="updateSecField(${idx}, 'src', this.value)">
+                <input type="text" value="${src}" style="padding:8px 10px;font-size:0.85rem;" onchange="updateSecField(${idx}, 'src', this.value); renderGalleryEditor();">
               </div>
               <div>
-                <label style="font-size:0.75rem;">Tỷ lệ (Aspect-ratio)</label>
-                <input type="text" value="${aspect}" style="padding:8px 10px;font-size:0.85rem;" placeholder="1800/1010" onchange="updateSecField(${idx}, 'aspect', this.value)">
+                <div style="display:flex;align-items:center;justify-content:space-between;">
+                  <label style="font-size:0.75rem;margin:0;">Tỷ lệ (Aspect-ratio)</label>
+                  <button type="button" class="btn-preset" onclick="autoDetectAspect(${idx})" style="color:#60a5fa;border-color:rgba(96,165,250,0.3);padding:2px 5px;">
+                    📐 Đo tự động
+                  </button>
+                </div>
+                <input type="text" id="aspect-input-${idx}" value="${aspect}" style="padding:8px 10px;font-size:0.85rem;margin-top:6px;" placeholder="1800/1010" onchange="updateSecField(${idx}, 'aspect', this.value)">
+                <div class="aspect-presets">
+                  <button type="button" class="btn-preset" title="Đo tỷ lệ thực của ảnh" onclick="autoDetectAspect(${idx})">Gốc (Tự động)</button>
+                  <button type="button" class="btn-preset" onclick="setAspectPreset(${idx}, '1800/1010')">16:9</button>
+                  <button type="button" class="btn-preset" onclick="setAspectPreset(${idx}, '1800/1350')">4:3</button>
+                  <button type="button" class="btn-preset" onclick="setAspectPreset(${idx}, '1000/1000')">1:1</button>
+                  <button type="button" class="btn-preset" onclick="setAspectPreset(${idx}, '1000/1333')">3:4 Dọc</button>
+                  <button type="button" class="btn-preset" onclick="setAspectPreset(${idx}, '1010/1800')">9:16 Dọc</button>
+                </div>
               </div>
               <div>
-                <label style="font-size:0.75rem;">Màu nền chờ</label>
-                <div style="display:flex;align-items:center;gap:6px;">
-                  <input type="color" value="${bg.startsWith('#') && bg.length === 7 ? bg : '#202020'}" style="width:36px;height:36px;padding:2px;cursor:pointer;border-radius:6px;border:1px solid var(--border);" onchange="updateSecField(${idx}, 'bg', this.value); this.nextElementSibling.value=this.value;">
-                  <input type="text" value="${bg}" style="padding:8px 6px;font-size:0.85rem;" onchange="updateSecField(${idx}, 'bg', this.value)">
+                <label style="font-size:0.75rem;">Chế độ hiển thị</label>
+                <select style="padding:8px 10px;font-size:0.85rem;" onchange="updateSecField(${idx}, 'fit', this.value); renderGalleryEditor();">
+                  <option value="contain" ${fit === 'contain' ? 'selected' : ''}>Fix ngang - Thấy trọn chiều dọc (Contain)</option>
+                  <option value="cover" ${fit === 'cover' ? 'selected' : ''}>Phủ kín khung (Cover)</option>
+                </select>
+                <div style="margin-top:8px;">
+                  <label style="font-size:0.75rem;">Màu nền chờ</label>
+                  <div style="display:flex;align-items:center;gap:6px;">
+                    <input type="color" value="${bg.startsWith('#') && bg.length === 7 ? bg : '#202020'}" style="width:36px;height:32px;padding:2px;cursor:pointer;border-radius:4px;border:1px solid var(--border);" onchange="updateSecField(${idx}, 'bg', this.value); this.nextElementSibling.value=this.value;">
+                    <input type="text" value="${bg}" style="padding:6px 6px;font-size:0.82rem;" onchange="updateSecField(${idx}, 'bg', this.value)">
+                  </div>
                 </div>
               </div>
             </div>
-            <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-top:8px;">
+            <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-top:10px;">
               <div>
                 <label style="font-size:0.75rem;">Chú thích (Alt)</label>
                 <input type="text" value="${alt}" style="padding:8px 10px;font-size:0.85rem;" placeholder="Mô tả bức ảnh..." onchange="updateSecField(${idx}, 'alt', this.value)">
@@ -1482,6 +1722,40 @@
       });
     }
 
+    function autoDetectAspect(idx) {
+      if (!editingProject || !editingProject.sections || !editingProject.sections[idx]) return;
+      const sec = editingProject.sections[idx];
+      const l = sec.large || sec;
+      const src = l.src;
+      if (!src) {
+        showToast('Chưa có đường dẫn ảnh!', 'error');
+        return;
+      }
+      showToast('Đang đo kích thước ảnh...');
+      const img = new Image();
+      img.onload = () => {
+        const w = img.naturalWidth;
+        const h = img.naturalHeight;
+        if (w && h) {
+          const aspect = `${w}/${h}`;
+          updateSecField(idx, 'aspect', aspect);
+          updateSecField(idx, 'fit', 'contain');
+          renderGalleryEditor();
+          showToast(`📐 Đã áp dụng tỷ lệ ảnh gốc: ${w}x${h} (${aspect})`);
+        }
+      };
+      img.onerror = () => {
+        showToast('Không thể tải ảnh để đo kích thước!', 'error');
+      };
+      img.src = src;
+    }
+
+    function setAspectPreset(idx, aspectVal) {
+      updateSecField(idx, 'aspect', aspectVal);
+      renderGalleryEditor();
+      showToast(`Đã đổi tỷ lệ thành: ${aspectVal}`);
+    }
+
     function updateSecField(idx, field, value) {
       if (!editingProject || !editingProject.sections[idx]) return;
       const sec = editingProject.sections[idx];
@@ -1491,6 +1765,8 @@
       sec.large[field] = value;
       if (field === 'src') sec.small.src = value;
       if (field === 'bg') sec.small.bg = value;
+      if (field === 'fit') sec.small.fit = value;
+      if (field === 'aspect') sec.small.aspect = value;
     }
 
     function moveImage(idx, dir) {
@@ -1516,6 +1792,7 @@
         large: {
           src: '/static/media/d/work/gucci/section/large/G0.jpg',
           aspect: '1800/1010',
+          fit: 'contain',
           bg: '#1a1a1a',
           alt: '',
           class: 'w-s-mts'
@@ -1523,6 +1800,7 @@
         small: {
           src: '/static/media/d/work/gucci/section/small/G0.jpg',
           aspect: '120/67',
+          fit: 'contain',
           bg: '#1a1a1a',
           class: 'w-preview-mts'
         }
@@ -1558,6 +1836,7 @@
               large: {
                 src: json.url,
                 aspect: aspect || '1800/1010',
+                fit: 'contain',
                 bg: dominantColor || '#202020',
                 alt: file.name.replace(/\.[^/.]+$/, ""),
                 class: 'w-s-mts'
@@ -1565,6 +1844,7 @@
               small: {
                 src: json.url,
                 aspect: '120/67',
+                fit: 'contain',
                 bg: dominantColor || '#202020',
                 class: 'w-preview-mts'
               }
@@ -1579,7 +1859,7 @@
 
       event.target.value = '';
       renderGalleryEditor();
-      showToast('✅ Đã tải ảnh lên thành công!');
+      showToast('✅ Đã tải ảnh lên và tự động đo tỷ lệ thành công!');
     }
 
     function readFileAndMetadata(file) {
@@ -1625,16 +1905,26 @@
       }
 
       editingProject.title = title;
-      if (isCreatingNewProject) {
-        const slugVal = document.getElementById('proj-slug').value.trim();
-        if (slugVal) editingProject.slug = slugVal;
+
+      // Handle custom slug modification
+      const slugVal = document.getElementById('proj-slug').value.trim();
+      if (slugVal) {
+        editingProject.slug = slugVal;
+        editingProject.newSlug = slugVal;
       }
+
       editingProject.role = document.getElementById('proj-role').value;
       editingProject.description = document.getElementById('proj-desc').value;
       editingProject.team_prefix = document.getElementById('proj-team-prefix').value;
       editingProject.team_name = document.getElementById('proj-team-name').value;
       editingProject.next_slug = document.getElementById('proj-next-slug').value;
       editingProject.next_title = document.getElementById('proj-next-title').value;
+
+      // Hero & Home textures
+      const heroTexVal = document.getElementById('proj-hero-tex').value.trim();
+      const homeTexVal = document.getElementById('proj-home-tex').value.trim();
+      if (heroTexVal) editingProject.hero_tex = heroTexVal;
+      if (homeTexVal) editingProject.home_tex = homeTexVal;
       
       const h1Lines = document.getElementById('proj-h1').value.split('\n').map(l => l.trim()).filter(Boolean);
       editingProject.h1_lines = h1Lines.length > 0 ? h1Lines : [title];
@@ -1645,12 +1935,16 @@
         const firstSrc = firstSec.large ? firstSec.large.src : (typeof firstSec === 'string' ? firstSec : '');
         if (firstSrc) {
           editingProject.home_tex = firstSrc;
-          editingProject.hero_tex = firstSrc;
+          if (!editingProject.hero_tex) editingProject.hero_tex = firstSrc;
         }
+      }
+      if (!editingProject.hero_tex && editingProject.home_tex) {
+        editingProject.hero_tex = editingProject.home_tex;
       }
 
       try {
-        const url = isCreatingNewProject ? '/api/projects' : ('/api/projects/' + editingProject.slug);
+        const targetSlug = isCreatingNewProject ? '' : (editingProjectOldSlug || editingProject.slug);
+        const url = isCreatingNewProject ? '/api/projects' : ('/api/projects/' + targetSlug);
         const method = 'POST';
         const res = await fetch(url, {
           method,

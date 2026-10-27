@@ -356,16 +356,48 @@ function getProjectBySlug(slug) {
   };
 }
 
-function updateProject(slug, data) {
-  const cleanSlug = slug.replace(/^\/+/, '');
+function updateProject(oldSlug, data) {
+  const cleanOldSlug = oldSlug.replace(/^\/+/, '');
+
+  let newSlug = (data.newSlug || data.slug || cleanOldSlug)
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9_-]/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+  if (!newSlug) newSlug = cleanOldSlug;
+
+  const existingProj = getProjectBySlug(cleanOldSlug);
+  if (!existingProj) {
+    throw new Error(`Không tìm thấy dự án với slug "/${cleanOldSlug}".`);
+  }
+
+  // If slug is changed, check for conflicts with another project
+  if (newSlug !== cleanOldSlug) {
+    const conflict = db.prepare('SELECT id FROM projects WHERE slug = ?').get(newSlug);
+    if (conflict) {
+      throw new Error(`Đường dẫn slug "/${newSlug}" đã được sử dụng bởi dự án khác.`);
+    }
+  }
+
+  const homeTex = data.home_tex || existingProj.home_tex || '/static/media/d/work/gucci/home';
+  const heroTex = data.hero_tex || existingProj.hero_tex || homeTex;
+  const h1Lines = Array.isArray(data.h1_lines) ? data.h1_lines : existingProj.h1_lines;
+  const sections = Array.isArray(data.sections) ? data.sections : existingProj.sections;
+
+  const isVis = (data.is_visible !== undefined ? data.is_visible : existingProj.is_visible) ? 1 : 0;
+
   db.prepare(`
     UPDATE projects SET
+      slug = ?,
       title = ?,
       h1_lines = ?,
       role = ?,
       description = ?,
       team_prefix = ?,
       team_name = ?,
+      home_tex = ?,
+      hero_tex = ?,
       next_slug = ?,
       next_title = ?,
       order_index = ?,
@@ -373,20 +405,24 @@ function updateProject(slug, data) {
       sections = ?
     WHERE slug = ?
   `).run(
-    data.title || '',
-    JSON.stringify(data.h1_lines || []),
-    data.role || '',
-    data.description || '',
+    newSlug,
+    data.title || existingProj.title,
+    JSON.stringify(h1Lines || []),
+    data.role !== undefined ? data.role : existingProj.role,
+    data.description !== undefined ? data.description : existingProj.description,
     data.team_prefix || 'Done with',
     data.team_name || '',
+    homeTex,
+    heroTex,
     data.next_slug || '',
     data.next_title || '',
-    data.order_index || 1,
-    data.is_visible ? 1 : 0,
-    JSON.stringify(data.sections || []),
-    cleanSlug
+    data.order_index !== undefined ? Number(data.order_index) : existingProj.order_index,
+    isVis,
+    JSON.stringify(sections || []),
+    cleanOldSlug
   );
-  return getProjectBySlug(cleanSlug);
+
+  return getProjectBySlug(newSlug);
 }
 
 function createProject(data) {

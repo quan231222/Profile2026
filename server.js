@@ -289,9 +289,21 @@ const server = http.createServer((req, res) => {
             ? renderMobileProjectHtml(proj)
             : renderDesktopProjectHtml(proj, totalProjects);
 
-          if (payload.cache && payload.cache[projKey]) {
-            payload.cache[projKey].html = dynamicProjHtml;
-            payload.cache[projKey].title = proj.title;
+          if (!payload.cache) payload.cache = {};
+          payload.cache[projKey] = {
+            title: proj.title,
+            html: dynamicProjHtml
+          };
+
+          if (payload.data) {
+            const heroClean = cleanTexturePath(proj.hero_tex || proj.home_tex);
+            const nextP = allDbProjects.find(p => p.slug === proj.next_slug) || allDbProjects[0];
+            const nextHomeClean = cleanTexturePath(nextP ? (nextP.home_tex || nextP.hero_tex) : heroClean);
+            payload.data[projKey] = {
+              preload: true,
+              texL: 2,
+              tex: [heroClean, nextHomeClean]
+            };
           }
 
           if (routeName === proj.slug && payload.body) {
