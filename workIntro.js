@@ -12,7 +12,14 @@ function escapeHtml(str) {
 
 function cleanTexturePath(p) {
   if (!p || typeof p !== 'string') return '';
-  let clean = p.split('?')[0].trim();
+  let clean = p.trim();
+  if (clean.startsWith('http://') || clean.startsWith('https://') || clean.startsWith('//')) {
+    if (clean.includes('res.cloudinary.com') && clean.includes('/upload/') && !clean.includes('/upload/w_')) {
+      clean = clean.replace('/upload/', '/upload/w_800,c_scale,q_auto/');
+    }
+    return clean;
+  }
+  clean = clean.split('?')[0].trim();
   clean = clean.replace(/\.(jpg|jpeg|png|webp)$/i, '');
   return clean;
 }
