@@ -245,7 +245,7 @@ function renderMobileAboutHtml(data) {
   const headlineHtml = hero.headline || 'Senior Designer<br>&amp; Art Director';
 
   return `<div id="a" class="page">` +
-    `<nav class="nav wrap"><a href="/">Profile 2026</a> <a href="/">Back</a></nav>` +
+    `<nav class="nav wrap"><a href="/" style="display:inline-flex;align-items:center;gap:10px;"><img src="/static/fav/fav.svg?v=2" alt="WN" style="height:22px;width:auto;vertical-align:middle;">Profile 2026</a> <a href="/">Back</a></nav>` +
     `<header id="a-hero" class="wrap wrap-t">` +
       `<h1>${headlineHtml}</h1>` +
       `<p class="a-mtl">${escapeHtml(hero.paragraph1)}</p>` +
