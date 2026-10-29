@@ -26,6 +26,7 @@ body,html,#app{font-family:"Plus Jakarta Sans","Be Vietnam Pro","s",sans-serif;}
 }
 
 .h-title-a {
+  pointer-events: auto !important;
   cursor: pointer !important;
   display: inline-flex !important;
   flex-direction: column !important;
@@ -35,6 +36,10 @@ body,html,#app{font-family:"Plus Jakarta Sans","Be Vietnam Pro","s",sans-serif;}
   color: #fff !important;
   position: relative !important;
   padding-bottom: 8px !important;
+}
+
+.h-title-a * {
+  pointer-events: auto !important;
 }
 
 .h-title-text {
