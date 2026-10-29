@@ -583,6 +583,45 @@
       border-color: #3b4252;
     }
 
+    .gallery-card-multicol {
+      background: rgba(22, 22, 34, 0.75);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      border-radius: 10px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .gallery-card-multicol:hover {
+      border-color: rgba(168, 85, 247, 0.6);
+      box-shadow: 0 4px 24px rgba(168, 85, 247, 0.1);
+    }
+
+    .multicol-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .multicol-col-box {
+      background: rgba(13, 13, 20, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .multicol-col-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
     .gallery-card-thumb {
       width: 140px;
       height: 100px;
@@ -978,13 +1017,16 @@
                    style="width:130px;height:85px;object-fit:contain;background:#0b0b0e;border:1px solid var(--border);border-radius:6px;flex-shrink:0;" 
                    onerror="this.src='/static/media/d/work/gucci/hero.jpg'">
               <div style="flex:1;">
-                <input type="text" id="proj-hero-tex" placeholder="/static/media/..." 
+                <input type="text" id="proj-hero-tex" placeholder="Dán link ảnh CDN (https://...) hoặc /static/media/..." 
                        style="font-size:0.85rem;padding:8px 10px;" 
-                       oninput="document.getElementById('preview-proj-hero').src=this.value; if(editingProject) editingProject.hero_tex=this.value;">
-                <div style="display:flex;gap:8px;margin-top:8px;">
+                       oninput="updateTexPreview('hero', this.value)">
+                <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
                   <input type="file" id="upload-hero-input" accept="image/*" style="display:none;" onchange="handleHeroUpload(event)">
                   <button type="button" class="btn btn-secondary" style="font-size:0.8rem;padding:6px 12px;" onclick="document.getElementById('upload-hero-input').click()">
                     ⬆ Tải ảnh lên
+                  </button>
+                  <button type="button" class="btn btn-secondary" style="font-size:0.8rem;padding:6px 12px;" onclick="promptLinkForTex('hero')">
+                    🔗 Dán link CDN
                   </button>
                   <button type="button" class="btn btn-secondary" style="font-size:0.8rem;padding:6px 12px;" onclick="useFirstGalleryAsHero()">
                     Lấy từ ảnh #1
@@ -1007,13 +1049,16 @@
                    style="width:130px;height:85px;object-fit:contain;background:#0b0b0e;border:1px solid var(--border);border-radius:6px;flex-shrink:0;" 
                    onerror="this.src='/static/media/d/work/gucci/home.jpg'">
               <div style="flex:1;">
-                <input type="text" id="proj-home-tex" placeholder="/static/media/..." 
+                <input type="text" id="proj-home-tex" placeholder="Dán link ảnh CDN (https://...) hoặc /static/media/..." 
                        style="font-size:0.85rem;padding:8px 10px;" 
-                       oninput="document.getElementById('preview-proj-home').src=this.value; if(editingProject) editingProject.home_tex=this.value;">
-                <div style="display:flex;gap:8px;margin-top:8px;">
+                       oninput="updateTexPreview('home', this.value)">
+                <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
                   <input type="file" id="upload-home-input" accept="image/*" style="display:none;" onchange="handleHomeUpload(event)">
                   <button type="button" class="btn btn-secondary" style="font-size:0.8rem;padding:6px 12px;" onclick="document.getElementById('upload-home-input').click()">
                     ⬆ Tải ảnh lên
+                  </button>
+                  <button type="button" class="btn btn-secondary" style="font-size:0.8rem;padding:6px 12px;" onclick="promptLinkForTex('home')">
+                    🔗 Dán link CDN
                   </button>
                   <button type="button" class="btn btn-secondary" style="font-size:0.8rem;padding:6px 12px;" onclick="useFirstGalleryAsHome()">
                     Lấy từ ảnh #1
@@ -1040,10 +1085,16 @@
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
             + Tải file lên
           </button>
-          <button class="btn btn-secondary" onclick="addEmptyMedia('image')">+ Thêm URL Ảnh</button>
+          <button class="btn btn-secondary" onclick="addEmptyMedia('image')">+ Thêm Ảnh (1 Cột)</button>
           <button class="btn btn-secondary" onclick="addEmptyMedia('video')" style="border-color:#38bdf8;color:#38bdf8;background:rgba(56,189,248,0.1);">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;margin-right:4px;"><polygon points="6,4 20,12 6,20"/></svg>
-            + Thêm Link Video (CDN)
+            + Thêm Video CDN (1 Cột)
+          </button>
+          <button class="btn btn-secondary" onclick="addMultiColSection('2-col')" style="border-color:#a855f7;color:#d8b4fe;background:rgba(168,85,247,0.12);font-weight:600;">
+            🍱 + Chia 2 Cột Song Song
+          </button>
+          <button class="btn btn-secondary" onclick="addMultiColSection('3-col')" style="border-color:#ec4899;color:#fbcfe8;background:rgba(236,72,153,0.12);font-weight:600;">
+            📊 + Chia 3 Cột
           </button>
         </div>
       </div>
@@ -1424,7 +1475,11 @@
       currentProjects.forEach(p => {
         const card = document.createElement('div');
         card.className = 'project-card';
-        const coverSrc = p.home_tex + '.jpg';
+        let coverSrc = p.home_tex || '';
+        if (coverSrc && !coverSrc.startsWith('http://') && !coverSrc.startsWith('https://') && !coverSrc.startsWith('//') && !coverSrc.startsWith('data:')) {
+          if (!/\.(jpg|jpeg|png|webp|avif)$/i.test(coverSrc)) coverSrc += '.jpg';
+        }
+        if (!coverSrc) coverSrc = '/static/media/d/work/gucci/home.jpg';
         const secCount = (p.sections || []).length;
         card.innerHTML = `
           <img class="project-card-cover" src="${coverSrc}" alt="${p.title}" onerror="this.src='/static/media/d/work/gucci/home.jpg'" onclick="editProject('${p.slug}')" style="cursor:pointer;" title="Nhấp vào ảnh để chỉnh sửa dự án">
@@ -1481,9 +1536,9 @@
 
       // Reset Hero & Home textures
       document.getElementById('proj-hero-tex').value = '';
-      document.getElementById('preview-proj-hero').src = '';
+      updateTexPreview('hero', '');
       document.getElementById('proj-home-tex').value = '';
-      document.getElementById('preview-proj-home').src = '';
+      updateTexPreview('home', '');
 
       renderGalleryEditor();
       document.getElementById('project-modal').classList.add('active');
@@ -1518,12 +1573,45 @@
       const heroVal = editingProject.hero_tex || '';
       const homeVal = editingProject.home_tex || '';
       document.getElementById('proj-hero-tex').value = heroVal;
-      document.getElementById('preview-proj-hero').src = heroVal;
+      updateTexPreview('hero', heroVal);
       document.getElementById('proj-home-tex').value = homeVal;
-      document.getElementById('preview-proj-home').src = homeVal;
+      updateTexPreview('home', homeVal);
 
       renderGalleryEditor();
       document.getElementById('project-modal').classList.add('active');
+    }
+
+    function updateTexPreview(type, val) {
+      let src = (val || '').trim();
+      if (src && !src.startsWith('http://') && !src.startsWith('https://') && !src.startsWith('//') && !src.startsWith('data:')) {
+        if (!/\.(jpg|jpeg|png|webp|avif)$/i.test(src)) src += '.jpg';
+      }
+      const elId = type === 'hero' ? 'preview-proj-hero' : 'preview-proj-home';
+      const imgEl = document.getElementById(elId);
+      if (imgEl) {
+        imgEl.src = src || (type === 'hero' ? '/static/media/d/work/gucci/hero.jpg' : '/static/media/d/work/gucci/home.jpg');
+      }
+      if (editingProject) {
+        if (type === 'hero') editingProject.hero_tex = (val || '').trim();
+        else editingProject.home_tex = (val || '').trim();
+      }
+    }
+
+    function promptLinkForTex(type) {
+      const name = type === 'hero' ? 'Hero Texture (Ảnh mở đầu khi vào dự án)' : 'Home Slider Texture (Ảnh bìa slider trang chủ)';
+      const current = (type === 'hero' ? document.getElementById('proj-hero-tex').value : document.getElementById('proj-home-tex').value) || '';
+      const url = prompt(`Nhập hoặc dán link ảnh CDN (Cloudinary, S3, Unsplash,...) cho ${name}:`, current);
+      if (url !== null) {
+        const trimmed = url.trim();
+        if (type === 'hero') {
+          document.getElementById('proj-hero-tex').value = trimmed;
+          updateTexPreview('hero', trimmed);
+        } else {
+          document.getElementById('proj-home-tex').value = trimmed;
+          updateTexPreview('home', trimmed);
+        }
+        showToast(`✅ Đã cập nhật link CDN cho ${name}!`);
+      }
     }
 
     async function handleHeroUpload(event) {
@@ -1541,7 +1629,7 @@
         if (json.success && json.url) {
           editingProject.hero_tex = json.url;
           document.getElementById('proj-hero-tex').value = json.url;
-          document.getElementById('preview-proj-hero').src = json.url;
+          updateTexPreview('hero', json.url);
           showToast('✅ Đã tải ảnh mở đầu dự án thành công!');
         } else {
           showToast('Lỗi khi tải ảnh hero: ' + (json.error || ''), 'error');
@@ -1567,7 +1655,7 @@
         if (json.success && json.url) {
           editingProject.home_tex = json.url;
           document.getElementById('proj-home-tex').value = json.url;
-          document.getElementById('preview-proj-home').src = json.url;
+          updateTexPreview('home', json.url);
           showToast('✅ Đã tải ảnh bìa trang chủ thành công!');
         } else {
           showToast('Lỗi khi tải ảnh bìa: ' + (json.error || ''), 'error');
@@ -1584,14 +1672,16 @@
         return;
       }
       const firstSec = editingProject.sections[0];
-      const firstSrc = firstSec.large ? firstSec.large.src : (typeof firstSec === 'string' ? firstSec : '');
+      const firstSrc = (firstSec.cols && firstSec.cols[0]) 
+        ? firstSec.cols[0].src 
+        : (firstSec.large ? firstSec.large.src : (typeof firstSec === 'string' ? firstSec : ''));
       if (!firstSrc) {
         showToast('Ảnh #1 chưa có đường dẫn!', 'error');
         return;
       }
       editingProject.hero_tex = firstSrc;
       document.getElementById('proj-hero-tex').value = firstSrc;
-      document.getElementById('preview-proj-hero').src = firstSrc;
+      updateTexPreview('hero', firstSrc);
       showToast('✅ Đã gán ảnh #1 làm ảnh mở đầu (Hero Texture)!');
     }
 
@@ -1601,14 +1691,16 @@
         return;
       }
       const firstSec = editingProject.sections[0];
-      const firstSrc = firstSec.large ? firstSec.large.src : (typeof firstSec === 'string' ? firstSec : '');
+      const firstSrc = (firstSec.cols && firstSec.cols[0]) 
+        ? firstSec.cols[0].src 
+        : (firstSec.large ? firstSec.large.src : (typeof firstSec === 'string' ? firstSec : ''));
       if (!firstSrc) {
         showToast('Ảnh #1 chưa có đường dẫn!', 'error');
         return;
       }
       editingProject.home_tex = firstSrc;
       document.getElementById('proj-home-tex').value = firstSrc;
-      document.getElementById('preview-proj-home').src = firstSrc;
+      updateTexPreview('home', firstSrc);
       showToast('✅ Đã gán ảnh #1 làm ảnh bìa slider trang chủ!');
     }
 
@@ -1656,7 +1748,42 @@
       }
     }
 
-    // --- Project Gallery Image/Video Editor ---
+    function checkAndSwitchColMediaType(secIdx, colIdx, url) {
+      if (!editingProject || !editingProject.sections[secIdx]) return;
+      const sec = editingProject.sections[secIdx];
+      if (sec.cols && sec.cols[colIdx] && isVideoUrl(url)) {
+        sec.cols[colIdx].type = 'video';
+      }
+    }
+
+    function isMultiCol(sec) {
+      return Boolean(sec.layout === '2-col' || sec.layout === '3-col' || (Array.isArray(sec.cols) && sec.cols.length > 1));
+    }
+
+    function syncSectionFallbacks(sec) {
+      if (sec.cols && sec.cols.length > 0) {
+        const first = sec.cols[0];
+        sec.large = {
+          type: first.type || 'image',
+          src: first.src || '',
+          aspect: first.aspect || '1800/1010',
+          fit: first.fit || 'contain',
+          bg: first.bg || '#141414',
+          alt: first.alt || '',
+          class: sec.class || 'w-s-mts'
+        };
+        sec.small = {
+          type: first.type || 'image',
+          src: first.src || '',
+          aspect: '120/67',
+          fit: first.fit || 'contain',
+          bg: first.bg || '#141414',
+          class: 'w-preview-mts'
+        };
+      }
+    }
+
+    // --- Project Gallery Image/Video & Column Layout Editor ---
     function renderGalleryEditor() {
       if (!editingProject) return;
       const list = document.getElementById('gallery-cards-list');
@@ -1666,13 +1793,142 @@
       document.getElementById('gallery-count').textContent = sections.length;
 
       sections.forEach((sec, idx) => {
+        const spacingClass = sec.class || (idx === 0 ? '' : 'w-s-mts');
+        const multi = isMultiCol(sec);
+
+        if (multi) {
+          const cols = Array.isArray(sec.cols) && sec.cols.length > 0 ? sec.cols : [sec.large || sec];
+          const card = document.createElement('div');
+          card.className = 'gallery-card-multicol';
+          card.innerHTML = `
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.08);">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <span style="font-size:0.95rem;font-weight:700;color:#c084fc;display:flex;align-items:center;gap:6px;">
+                  🍱 Hàng #${idx + 1} (${cols.length === 2 ? 'Chia 2 Cột Song Song' : cols.length + ' Cột Ngang'})
+                </span>
+                <label style="font-size:0.78rem;color:#a855f7;display:flex;align-items:center;gap:6px;font-weight:600;">
+                  Bố cục:
+                  <select style="padding:4px 8px;font-size:0.78rem;border-radius:4px;border:1px solid rgba(168,85,247,0.5);background:#1e1b2e;color:#f3e8ff;font-weight:600;" onchange="switchSectionLayout(${idx}, this.value)">
+                    <option value="1-col">1 Cột (Toàn chiều rộng)</option>
+                    <option value="2-col" ${cols.length === 2 ? 'selected' : ''}>2 Cột (Song song 50-50)</option>
+                    <option value="3-col" ${cols.length === 3 ? 'selected' : ''}>3 Cột (Song song 33-33-33)</option>
+                  </select>
+                </label>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                ${cols.length === 2 ? `
+                  <button type="button" class="btn-preset" onclick="swapCols(${idx})" style="color:#d8b4fe;border-color:rgba(168,85,247,0.4);padding:4px 8px;" title="Đổi vị trí cột 1 và cột 2">
+                    ⇄ Đổi vị trí 2 cột
+                  </button>
+                ` : ''}
+                <button class="btn-icon" title="Di chuyển lên" onclick="moveImage(${idx}, -1)" ${idx === 0 ? 'disabled style="opacity:0.3;"' : ''}>⬆</button>
+                <button class="btn-icon" title="Di chuyển xuống" onclick="moveImage(${idx}, 1)" ${idx === sections.length - 1 ? 'disabled style="opacity:0.3;"' : ''}>⬇</button>
+                <button class="btn-icon delete" title="Xoá hàng" onclick="removeImage(${idx})">🗑</button>
+              </div>
+            </div>
+
+            <div class="multicol-grid" style="grid-template-columns: repeat(${cols.length}, 1fr);">
+              ${cols.map((col, cIdx) => {
+                const cIsVid = col.type === 'video' || isVideoUrl(col.src, col);
+                const cAspect = col.aspect || '1/1';
+                const cFit = col.fit || 'contain';
+                const cBg = col.bg || '#141414';
+                const cAlt = col.alt || '';
+                const cSrc = col.src || '';
+
+                return `
+                  <div class="multicol-col-box">
+                    <div class="multicol-col-header">
+                      <span style="font-size:0.82rem;font-weight:700;color:${cIsVid ? '#38bdf8' : '#a78bfa'};">
+                        ${cIsVid ? '🎥 Video' : '🖼️ Ảnh'} • Cột ${cIdx + 1} (${cIdx === 0 ? 'Bên trái' : (cIdx === 1 ? 'Bên phải' : 'Ở giữa')})
+                      </span>
+                      <label style="font-size:0.72rem;color:var(--text-muted);display:flex;align-items:center;gap:4px;">
+                        Loại:
+                        <select style="padding:2px 5px;font-size:0.72rem;border-radius:4px;border:1px solid var(--border);background:var(--bg-input);color:#fff;" onchange="updateColField(${idx}, ${cIdx}, 'type', this.value); renderGalleryEditor();">
+                          <option value="image" ${!cIsVid ? 'selected' : ''}>Ảnh</option>
+                          <option value="video" ${cIsVid ? 'selected' : ''}>Video CDN</option>
+                        </select>
+                      </label>
+                    </div>
+
+                    <div style="display:flex;gap:10px;align-items:center;">
+                      <div style="position:relative;background:#000;border-radius:6px;overflow:hidden;width:100px;height:65px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        ${cIsVid ? `
+                          <video src="${cSrc}" autoplay muted loop playsinline onclick="window.open('${cSrc}', '_blank')" style="width:100%;height:100%;object-fit:${cFit};cursor:pointer;"></video>
+                          <span style="position:absolute;top:2px;left:2px;font-size:0.58rem;background:#0284c7;color:#fff;padding:1px 3px;border-radius:2px;font-weight:700;">VID</span>
+                        ` : `
+                          <img src="${cSrc}" alt="Col #${cIdx + 1}" onerror="this.src='/static/media/d/work/gucci/section/small/G0.jpg'" onclick="window.open('${cSrc}', '_blank')" style="width:100%;height:100%;object-fit:${cFit};cursor:pointer;">
+                        `}
+                        <span style="position:absolute;bottom:2px;right:2px;font-size:0.62rem;background:rgba(0,0,0,0.8);padding:1px 4px;border-radius:2px;color:#cbd5e1;">${cAspect}</span>
+                      </div>
+                      <div style="flex:1;min-width:0;">
+                        <label style="font-size:0.72rem;display:block;margin-bottom:3px;">${cIsVid ? 'Link Video CDN (.mp4, Cloudinary)' : 'Đường dẫn ảnh (CDN URL / Path)'}</label>
+                        <input type="text" value="${cSrc}" placeholder="${cIsVid ? 'https://res.cloudinary.com/.../video.mp4' : 'https://...'}" style="padding:6px 8px;font-size:0.8rem;width:100%;" onchange="updateColField(${idx}, ${cIdx}, 'src', this.value); checkAndSwitchColMediaType(${idx}, ${cIdx}, this.value); renderGalleryEditor();">
+                      </div>
+                    </div>
+
+                    <div>
+                      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;">
+                        <label style="font-size:0.72rem;margin:0;">Tỷ lệ (Aspect-ratio)</label>
+                        <button type="button" class="btn-preset" onclick="autoDetectColAspect(${idx}, ${cIdx})" style="color:#60a5fa;border-color:rgba(96,165,250,0.3);padding:1px 5px;font-size:0.68rem;">
+                          📐 Đo tự động
+                        </button>
+                      </div>
+                      <input type="text" id="aspect-input-${idx}-${cIdx}" value="${cAspect}" style="padding:6px 8px;font-size:0.8rem;" placeholder="1/1 hoặc 4/5" onchange="updateColField(${idx}, ${cIdx}, 'aspect', this.value)">
+                      <div class="aspect-presets" style="margin-top:4px;">
+                        <button type="button" class="btn-preset" onclick="setColAspectPreset(${idx}, ${cIdx}, '1/1')">1:1 (Vuông)</button>
+                        <button type="button" class="btn-preset" onclick="setColAspectPreset(${idx}, ${cIdx}, '4/5')">4:5 (Dọc sang trọng)</button>
+                        <button type="button" class="btn-preset" onclick="setColAspectPreset(${idx}, ${cIdx}, '16/9')">16:9</button>
+                        <button type="button" class="btn-preset" onclick="setColAspectPreset(${idx}, ${cIdx}, '1800/1010')">1800/1010</button>
+                      </div>
+                    </div>
+
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                      <div>
+                        <label style="font-size:0.72rem;">Chế độ hiển thị</label>
+                        <select style="padding:6px 8px;font-size:0.78rem;" onchange="updateColField(${idx}, ${cIdx}, 'fit', this.value); renderGalleryEditor();">
+                          <option value="contain" ${cFit === 'contain' ? 'selected' : ''}>Contain (Fix ngang)</option>
+                          <option value="cover" ${cFit === 'cover' ? 'selected' : ''}>Cover (Phủ kín)</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label style="font-size:0.72rem;">Màu nền</label>
+                        <div style="display:flex;align-items:center;gap:4px;">
+                          <input type="color" value="${cBg.startsWith('#') && cBg.length === 7 ? cBg : '#141414'}" style="width:28px;height:26px;padding:1px;cursor:pointer;border-radius:4px;border:1px solid var(--border);" onchange="updateColField(${idx}, ${cIdx}, 'bg', this.value); this.nextElementSibling.value=this.value;">
+                          <input type="text" value="${cBg}" style="padding:4px 6px;font-size:0.75rem;" onchange="updateColField(${idx}, ${cIdx}, 'bg', this.value)">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label style="font-size:0.72rem;">Chú thích (Alt / Tiêu đề)</label>
+                      <input type="text" value="${cAlt}" style="padding:6px 8px;font-size:0.8rem;" placeholder="Mô tả..." onchange="updateColField(${idx}, ${cIdx}, 'alt', this.value)">
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+
+            <div style="display:flex;justify-content:flex-end;align-items:center;gap:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);">
+              <label style="font-size:0.75rem;color:var(--text-muted);">Khoảng cách lề trên:</label>
+              <select style="padding:4px 8px;font-size:0.78rem;" onchange="updateSecField(${idx}, 'class', this.value)">
+                <option value="" ${spacingClass === '' ? 'selected' : ''}>Sát nhau / Đầu trang</option>
+                <option value="w-s-mts" ${spacingClass === 'w-s-mts' ? 'selected' : ''}>Cách vừa (mts)</option>
+                <option value="w-s-mtl" ${spacingClass === 'w-s-mtl' ? 'selected' : ''}>Cách rộng (mtl)</option>
+              </select>
+            </div>
+          `;
+          list.appendChild(card);
+          return;
+        }
+
+        // Standard 1-Column Section Card
         const l = sec.large || sec;
         const src = l.src || '';
         const alt = l.alt || '';
         const aspect = l.aspect || '1800/1010';
         const fit = l.fit || 'contain';
         const bg = l.bg || '#141414';
-        const spacingClass = l.class || (idx === 0 ? '' : 'w-s-mts');
         const isVid = l.type === 'video' || isVideoUrl(src, l);
 
         const card = document.createElement('div');
@@ -1688,11 +1944,19 @@
             <span style="position:absolute;bottom:4px;right:4px;font-size:0.68rem;background:rgba(0,0,0,0.75);padding:1px 5px;border-radius:3px;color:${isVid ? '#38bdf8' : '#cbd5e1'};">${aspect}</span>
           </div>
           <div>
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px;">
               <span style="font-size:0.85rem;font-weight:700;color:${isVid ? '#38bdf8' : '#60a5fa'};">
                 ${isVid ? '🎥 Video' : '🖼️ Ảnh'} #${idx + 1}
               </span>
               <div style="display:flex;align-items:center;gap:10px;">
+                <label style="font-size:0.75rem;color:#a855f7;display:flex;align-items:center;gap:4px;font-weight:600;">
+                  Bố cục:
+                  <select style="padding:2px 6px;font-size:0.75rem;border-radius:4px;border:1px solid rgba(168,85,247,0.4);background:var(--bg-input);color:#e9d5ff;" onchange="switchSectionLayout(${idx}, this.value)">
+                    <option value="1-col" selected>1 Cột (Toàn chiều rộng)</option>
+                    <option value="2-col">2 Cột (Song song 50-50)</option>
+                    <option value="3-col">3 Cột (3 Cột ngang)</option>
+                  </select>
+                </label>
                 <label style="font-size:0.75rem;color:var(--text-muted);display:flex;align-items:center;gap:4px;cursor:pointer;">
                   Loại:
                   <select style="padding:2px 6px;font-size:0.75rem;border-radius:4px;border:1px solid var(--border);background:var(--bg-input);color:#fff;" onchange="updateSecField(${idx}, 'type', this.value); renderGalleryEditor();">
@@ -1700,9 +1964,6 @@
                     <option value="video" ${isVid ? 'selected' : ''}>Video (Clip CDN)</option>
                   </select>
                 </label>
-                <span style="font-size:0.75rem;color:var(--text-muted);">
-                  ${fit === 'contain' ? '✓ Fix ngang & thấy trọn' : 'Phủ kín khung'}
-                </span>
               </div>
             </div>
             <div class="gallery-card-fields">
@@ -1765,6 +2026,178 @@
         `;
         list.appendChild(card);
       });
+    }
+
+    function switchSectionLayout(idx, newLayout) {
+      if (!editingProject || !editingProject.sections || !editingProject.sections[idx]) return;
+      const sec = editingProject.sections[idx];
+      const oldLayout = sec.layout || ((sec.cols && sec.cols.length > 1) ? `${sec.cols.length}-col` : '1-col');
+      if (oldLayout === newLayout) return;
+
+      sec.layout = newLayout;
+      if (newLayout === '1-col') {
+        if (sec.cols && sec.cols.length > 0) {
+          const c0 = sec.cols[0];
+          sec.large = {
+            type: c0.type || 'image',
+            src: c0.src || '',
+            aspect: c0.aspect || '1800/1010',
+            fit: c0.fit || 'contain',
+            bg: c0.bg || '#141414',
+            alt: c0.alt || '',
+            class: sec.class || 'w-s-mts'
+          };
+          sec.small = {
+            type: c0.type || 'image',
+            src: c0.src || '',
+            aspect: '120/67',
+            fit: c0.fit || 'contain',
+            bg: c0.bg || '#141414',
+            class: 'w-preview-mts'
+          };
+        }
+        delete sec.cols;
+      } else if (newLayout === '2-col') {
+        const existingCols = sec.cols || [];
+        const baseItem = existingCols[0] || (sec.large ? {
+          type: sec.large.type || 'image',
+          src: sec.large.src || '',
+          aspect: '1/1',
+          fit: sec.large.fit || 'contain',
+          bg: sec.large.bg || '#141414',
+          alt: sec.large.alt || ''
+        } : { type: 'image', src: '', aspect: '1/1', fit: 'contain', bg: '#141414', alt: '' });
+
+        const col1 = existingCols[0] || baseItem;
+        const col2 = existingCols[1] || {
+          type: 'image',
+          src: '',
+          aspect: col1.aspect || '1/1',
+          fit: col1.fit || 'contain',
+          bg: col1.bg || '#141414',
+          alt: ''
+        };
+        sec.cols = [col1, col2];
+        syncSectionFallbacks(sec);
+      } else if (newLayout === '3-col') {
+        const existingCols = sec.cols || [];
+        const col1 = existingCols[0] || (sec.large ? { ...sec.large, aspect: '1/1' } : { type: 'image', src: '', aspect: '1/1', fit: 'contain', bg: '#141414', alt: '' });
+        const col2 = existingCols[1] || { type: 'image', src: '', aspect: '1/1', fit: 'contain', bg: '#141414', alt: '' };
+        const col3 = existingCols[2] || { type: 'image', src: '', aspect: '1/1', fit: 'contain', bg: '#141414', alt: '' };
+        sec.cols = [col1, col2, col3];
+        syncSectionFallbacks(sec);
+      }
+      renderGalleryEditor();
+      showToast(`Đã chuyển bố cục thành: ${newLayout === '1-col' ? '1 Cột' : (newLayout === '2-col' ? '2 Cột' : '3 Cột')}`);
+    }
+
+    function addMultiColSection(layout = '2-col') {
+      if (!editingProject) return;
+      if (!editingProject.sections) editingProject.sections = [];
+      const numCols = layout === '3-col' ? 3 : 2;
+      const cols = [];
+      for (let c = 0; c < numCols; c++) {
+        cols.push({
+          type: 'image',
+          src: '',
+          aspect: '1/1',
+          fit: 'contain',
+          bg: '#141414',
+          alt: ''
+        });
+      }
+      const newSec = {
+        layout: layout,
+        class: 'w-s-mts',
+        cols: cols,
+        large: {
+          type: 'image',
+          src: '',
+          aspect: '1800/1010',
+          fit: 'contain',
+          bg: '#141414',
+          class: 'w-s-mts'
+        },
+        small: {
+          type: 'image',
+          src: '',
+          aspect: '120/67',
+          fit: 'contain',
+          bg: '#141414',
+          class: 'w-preview-mts'
+        }
+      };
+      editingProject.sections.push(newSec);
+      renderGalleryEditor();
+      showToast(`🍱 Đã thêm hàng ${numCols} Cột song song mới! Dán link CDN vào từng cột.`);
+    }
+
+    function updateColField(secIdx, colIdx, field, value) {
+      if (!editingProject || !editingProject.sections || !editingProject.sections[secIdx]) return;
+      const sec = editingProject.sections[secIdx];
+      if (!sec.cols || !sec.cols[colIdx]) return;
+
+      sec.cols[colIdx][field] = value;
+      syncSectionFallbacks(sec);
+    }
+
+    function autoDetectColAspect(secIdx, colIdx) {
+      if (!editingProject || !editingProject.sections || !editingProject.sections[secIdx]) return;
+      const sec = editingProject.sections[secIdx];
+      if (!sec.cols || !sec.cols[colIdx]) return;
+      const col = sec.cols[colIdx];
+      const src = col.src;
+      if (!src) {
+        showToast('Chưa có đường dẫn ảnh/video trong cột này!', 'error');
+        return;
+      }
+      const isVid = col.type === 'video' || isVideoUrl(src, col);
+      if (isVid) {
+        showToast('Đang đo kích thước video...');
+        const vid = document.createElement('video');
+        vid.preload = 'metadata';
+        vid.onloadedmetadata = () => {
+          if (vid.videoWidth && vid.videoHeight) {
+            const aspect = `${vid.videoWidth}/${vid.videoHeight}`;
+            updateColField(secIdx, colIdx, 'aspect', aspect);
+            renderGalleryEditor();
+            showToast(`📐 Đã áp dụng tỷ lệ video Cột ${colIdx + 1}: ${aspect}`);
+          }
+        };
+        vid.onerror = () => showToast('Không đọc được kích thước video!', 'error');
+        vid.src = src;
+      } else {
+        showToast('Đang đo kích thước ảnh...');
+        const img = new Image();
+        img.onload = () => {
+          if (img.naturalWidth && img.naturalHeight) {
+            const aspect = `${img.naturalWidth}/${img.naturalHeight}`;
+            updateColField(secIdx, colIdx, 'aspect', aspect);
+            renderGalleryEditor();
+            showToast(`📐 Đã áp dụng tỷ lệ ảnh Cột ${colIdx + 1}: ${aspect}`);
+          }
+        };
+        img.onerror = () => showToast('Không tải được ảnh để đo!', 'error');
+        img.src = src;
+      }
+    }
+
+    function setColAspectPreset(secIdx, colIdx, aspectVal) {
+      updateColField(secIdx, colIdx, 'aspect', aspectVal);
+      renderGalleryEditor();
+      showToast(`Đã đổi tỷ lệ Cột ${colIdx + 1} thành: ${aspectVal}`);
+    }
+
+    function swapCols(secIdx, i1 = 0, i2 = 1) {
+      if (!editingProject || !editingProject.sections || !editingProject.sections[secIdx]) return;
+      const sec = editingProject.sections[secIdx];
+      if (!sec.cols || !sec.cols[i1] || !sec.cols[i2]) return;
+      const temp = sec.cols[i1];
+      sec.cols[i1] = sec.cols[i2];
+      sec.cols[i2] = temp;
+      syncSectionFallbacks(sec);
+      renderGalleryEditor();
+      showToast('⇄ Đã hoán đổi vị trí 2 cột!');
     }
 
     function autoDetectAspect(idx) {
@@ -1839,6 +2272,7 @@
       if (!sec.small) sec.small = {};
 
       sec.large[field] = value;
+      sec[field] = value;
       if (field === 'src') sec.small.src = value;
       if (field === 'bg') sec.small.bg = value;
       if (field === 'fit') sec.small.fit = value;
@@ -2025,16 +2459,27 @@
       // Hero & Home textures
       const heroTexVal = document.getElementById('proj-hero-tex').value.trim();
       const homeTexVal = document.getElementById('proj-home-tex').value.trim();
-      if (heroTexVal) editingProject.hero_tex = heroTexVal;
-      if (homeTexVal) editingProject.home_tex = homeTexVal;
+      editingProject.hero_tex = heroTexVal;
+      editingProject.home_tex = homeTexVal;
       
       const h1Lines = document.getElementById('proj-h1').value.split('\n').map(l => l.trim()).filter(Boolean);
       editingProject.h1_lines = h1Lines.length > 0 ? h1Lines : [title];
 
+      // Sync fallbacks for multi-column sections before saving
+      if (editingProject.sections && Array.isArray(editingProject.sections)) {
+        editingProject.sections.forEach(sec => {
+          if (sec.cols && sec.cols.length > 0) {
+            syncSectionFallbacks(sec);
+          }
+        });
+      }
+
       // Auto assign cover/hero if not set
       if (!editingProject.home_tex && editingProject.sections && editingProject.sections.length > 0) {
         const firstSec = editingProject.sections[0];
-        const firstSrc = firstSec.large ? firstSec.large.src : (typeof firstSec === 'string' ? firstSec : '');
+        const firstSrc = (firstSec.cols && firstSec.cols[0]) 
+          ? firstSec.cols[0].src 
+          : (firstSec.large ? firstSec.large.src : (typeof firstSec === 'string' ? firstSec : ''));
         if (firstSrc) {
           editingProject.home_tex = firstSrc;
           if (!editingProject.hero_tex) editingProject.hero_tex = firstSrc;

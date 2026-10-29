@@ -39,6 +39,15 @@ function getAllProjectImages(projects) {
       ? p.sections
       : (typeof p.sections === 'string' ? JSON.parse(p.sections || '[]') : []);
     secs.forEach(s => {
+      if (s.cols && Array.isArray(s.cols)) {
+        s.cols.forEach(cItem => {
+          const src = cItem.src;
+          if (src) {
+            const c = cleanTexturePath(src);
+            if (c) candidates.add(c);
+          }
+        });
+      }
       const src = s.large ? s.large.src : (typeof s === 'string' ? s : '');
       if (src) {
         const c = cleanTexturePath(src);
@@ -104,8 +113,10 @@ function renderMobileHomeHtml(projects) {
     let coverSrc = p.home_tex;
     if (!coverSrc) {
       coverSrc = '/static/media/m/work/gucci/home.jpg?1';
-    } else if (!coverSrc.includes('.')) {
-      coverSrc = coverSrc + '.jpg?1';
+    } else if (!coverSrc.startsWith('http://') && !coverSrc.startsWith('https://') && !coverSrc.startsWith('//')) {
+      if (!coverSrc.includes('.')) {
+        coverSrc = coverSrc + '.jpg?1';
+      }
     }
     const lzAttr = idx === 0 ? `src="${coverSrc}"` : `class="_lz" src="data:," data-src="${coverSrc}"`;
     return `<li class="h-list"><a href="/${p.slug}"><div class="h-list-img"><img ${lzAttr} alt="${escapeHtml(p.title)}" width="764" height="1368"></div><h2 class="h-list-title">${escapeHtml(p.title)}</h2><div class="h-list-discover">Discover</div></a></li>`;

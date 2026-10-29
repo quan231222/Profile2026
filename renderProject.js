@@ -61,6 +61,31 @@ function renderDesktopProjectHtml(project, totalProjects = 8) {
 
   // Large Section Items
   const largeItemsHtml = sections.map((sec, idx) => {
+    const isMulti = sec.layout === '2-col' || sec.layout === '3-col' || (Array.isArray(sec.cols) && sec.cols.length > 1);
+
+    if (isMulti) {
+      const cols = Array.isArray(sec.cols) && sec.cols.length > 0 ? sec.cols : [sec.large || sec];
+      const spacingClass = sec.class || (idx === 0 ? '' : 'w-s-mts');
+      const rowClass = `w-s-row w-s-row-${cols.length} ${spacingClass}`.trim();
+
+      const colItemsHtml = cols.map(c => {
+        const aspect = c.aspect || '1/1';
+        const bg = c.bg || '#141414';
+        const src = c.src || '';
+        const alt = escapeHtml(c.alt || project.title || '');
+        const fit = c.fit || 'contain';
+        const fitStyle = fit === 'contain' ? 'style="object-fit: contain;" ' : 'style="object-fit: cover;" ';
+        const poster = c.poster || '';
+
+        if (isVideo(src, c)) {
+          return `<div class="w-s-col" style="aspect-ratio: ${aspect};"><div style="background-color: ${bg};"></div>${renderVideoElementHtml(src, aspect, bg, fit, alt, poster)}</div>`;
+        }
+        return `<div class="w-s-col" style="aspect-ratio: ${aspect};"><div style="background-color: ${bg};"></div><img class="_lz" ${fitStyle}src="data:," data-src="${src}" alt="${alt}"></div>`;
+      }).join('');
+
+      return `<div class="${rowClass}">${colItemsHtml}</div>`;
+    }
+
     const l = sec.large || sec;
     const defaultClass = idx === 0 ? '' : ' class="w-s-mts"';
     const classAttr = l.class ? ` class="${escapeHtml(l.class)}"` : defaultClass;
@@ -81,10 +106,26 @@ function renderDesktopProjectHtml(project, totalProjects = 8) {
 
   // Small Preview Items (Carousel thumbnails on right)
   const smallItemsHtml = sections.map((sec, idx) => {
+    const isMulti = sec.layout === '2-col' || sec.layout === '3-col' || (Array.isArray(sec.cols) && sec.cols.length > 1);
+    const extraClass = (sec.small && sec.small.class) ? ` ${sec.small.class}` : (idx === 0 ? '' : ' w-preview-mts');
+    const aspect = (sec.small && sec.small.aspect) || '120/67';
+    const bg = (sec.small && sec.small.bg) || '#141414';
+
+    if (isMulti) {
+      const cols = Array.isArray(sec.cols) && sec.cols.length > 0 ? sec.cols : [sec.large || sec];
+      const thumbsHtml = cols.map(c => {
+        const cSrc = c.poster || c.src || '';
+        const cIsVid = isVideo(cSrc, c);
+        if (cIsVid && !c.poster) {
+          return `<div style="flex:1;height:100%;position:relative;overflow:hidden;background:#0d0d0d;"><video class="w-preview-vid" src="${cSrc}" autoplay muted loop playsinline></video></div>`;
+        }
+        return `<div style="flex:1;height:100%;position:relative;overflow:hidden;background:#0d0d0d;"><img class="_lz" src="data:," data-src="${cSrc}" alt="" style="width:100%;height:100%;object-fit:cover;"></div>`;
+      }).join('');
+
+      return `<div class="w-preview${extraClass}" style="aspect-ratio: ${aspect};"><div style="background-color: ${bg};"></div><div style="display:flex;gap:2px;width:100%;height:100%;position:relative;pointer-events:none;">${thumbsHtml}</div></div>`;
+    }
+
     const s = sec.small || sec;
-    const extraClass = s.class ? ` ${s.class}` : (idx === 0 ? '' : ' w-preview-mts');
-    const aspect = s.aspect || '120/67';
-    const bg = s.bg || '#141414';
     const src = s.src || (sec.large ? sec.large.src : (typeof sec === 'string' ? sec : ''));
     const poster = s.poster || sec.poster || '';
 
@@ -156,8 +197,30 @@ function renderMobileProjectHtml(project) {
     : (typeof project.sections === 'string' ? JSON.parse(project.sections || '[]') : []);
 
   const itemsHtml = sections.map((sec, idx) => {
-    const l = sec.large || sec;
     const marginClass = idx === 0 ? '' : ' a-mtm';
+    const isMulti = sec.layout === '2-col' || sec.layout === '3-col' || (Array.isArray(sec.cols) && sec.cols.length > 1);
+
+    if (isMulti) {
+      const cols = Array.isArray(sec.cols) && sec.cols.length > 0 ? sec.cols : [sec.large || sec];
+      const colItemsHtml = cols.map(c => {
+        const aspect = c.aspect || '1/1';
+        const src = c.src || '';
+        const alt = escapeHtml(c.alt || project.title || '');
+        const bg = c.bg || '#141414';
+        const fit = c.fit || 'contain';
+        const fitStyle = fit === 'contain' ? ' style="object-fit: contain;"' : ' style="object-fit: cover;"';
+        const poster = c.poster || '';
+
+        if (isVideo(src, c)) {
+          return `<div class="w-list-col" style="aspect-ratio: ${aspect};position:relative;background-color:${bg};overflow:hidden;">${renderVideoElementHtml(src, aspect, bg, fit, alt, poster)}</div>`;
+        }
+        return `<div class="w-list-col" style="aspect-ratio: ${aspect};position:relative;overflow:hidden;"><div style="background-color:${bg};"></div><img class="_lz"${fitStyle} src="data:," data-src="${src}" alt="${alt}"></div>`;
+      }).join('');
+
+      return `<div class="w-list-row${marginClass}" style="display:flex;gap:12px;width:100%;box-sizing:border-box;">${colItemsHtml}</div>`;
+    }
+
+    const l = sec.large || sec;
     const aspect = l.aspect || '1800/1010';
     const src = l.src || (typeof sec === 'string' ? sec : '');
     const alt = escapeHtml(l.alt || project.title || '');
@@ -175,6 +238,11 @@ function renderMobileProjectHtml(project) {
 
   const nextSlug = project.next_slug ? project.next_slug.replace(/^\/+/, '') : 'gucci';
   let heroImg = project.hero_tex || project.home_tex || `/static/media/m/work/${project.slug}/hero.jpg?1`;
+  if (heroImg && !heroImg.startsWith('http://') && !heroImg.startsWith('https://') && !heroImg.startsWith('//') && !heroImg.startsWith('data:')) {
+    if (!/\.(jpg|jpeg|png|webp|avif)/i.test(heroImg)) {
+      heroImg += '.jpg';
+    }
+  }
   if (heroImg && !heroImg.includes('?') && !heroImg.startsWith('data:')) {
     heroImg += '?1';
   }
