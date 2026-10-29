@@ -385,7 +385,7 @@ function updateProject(oldSlug, data) {
     }
   }
 
-  const homeTex = data.home_tex || existingProj.home_tex || '/static/media/d/work/gucci/home';
+  const homeTex = data.home_tex || existingProj.home_tex || '';
   const heroTex = data.hero_tex || existingProj.hero_tex || homeTex;
   const heroFit = data.hero_fit || existingProj.hero_fit || 'contain';
   const h1Lines = Array.isArray(data.h1_lines) ? data.h1_lines : existingProj.h1_lines;
@@ -457,7 +457,7 @@ function createProject(data) {
   const maxOrder = db.prepare('SELECT MAX(order_index) as max_order FROM projects').get().max_order || 0;
   const orderIndex = (data.order_index && Number(data.order_index)) || (maxOrder + 1);
 
-  const homeTex = data.home_tex || '/static/media/d/work/gucci/home';
+  const homeTex = data.home_tex || '';
   const heroTex = data.hero_tex || homeTex;
   const heroFit = data.hero_fit || 'contain';
   const h1Lines = Array.isArray(data.h1_lines) ? data.h1_lines : (data.title ? [data.title] : ['New Project']);
@@ -479,7 +479,7 @@ function createProject(data) {
     homeTex,
     heroTex,
     heroFit,
-    data.next_slug || 'gucci',
+    data.next_slug || 'intershop_guardian',
     data.next_title || 'Next Project',
     orderIndex,
     data.is_visible !== false ? 1 : 0,

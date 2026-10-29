@@ -76,7 +76,7 @@ function getIntroThumbnailPath(url) {
 function getRandomIntroTextures(projects, count = 25) {
   const allImages = getAllProjectImages(projects);
   if (allImages.length === 0) {
-    return Array.from({ length: count }, (_, i) => `/static/media/d/load/${i}`);
+    return Array.from({ length: count }, () => 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
   }
 
   // Shuffle all images with Fisher-Yates
@@ -126,7 +126,8 @@ function renderMobileHomeHtml(projects) {
   const mobileItemsHtml = projects.map((p, idx) => {
     let coverSrc = p.home_tex;
     if (!coverSrc) {
-      coverSrc = '/static/media/m/work/gucci/home.jpg?1';
+      const s0 = p.sections && p.sections[0] ? (p.sections[0].large ? p.sections[0].large.src : p.sections[0].src || (p.sections[0].cols ? p.sections[0].cols[0].src : '')) : '';
+      coverSrc = s0 || '';
     } else if (!coverSrc.startsWith('http://') && !coverSrc.startsWith('https://') && !coverSrc.startsWith('//')) {
       if (!coverSrc.includes('.')) {
         coverSrc = coverSrc + '.jpg?1';

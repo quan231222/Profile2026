@@ -153,7 +153,7 @@ function renderDesktopProjectHtml(project, totalProjects = 8) {
     return `<div class="w-preview${extraClass}" style="aspect-ratio: ${aspect};"><div style="background-color: ${bg};"></div><img class="_lz" src="data:," data-src="${src}" alt="" width="120" height="67"></div>`;
   }).join('');
 
-  const nextSlug = project.next_slug ? project.next_slug.replace(/^\/+/, '') : 'gucci';
+  const nextSlug = project.next_slug ? project.next_slug.replace(/^\/+/, '') : 'intershop_guardian';
   const nextTitle = project.next_title || 'Next Project';
   const orderIdx = project.order_index || 1;
 
@@ -250,10 +250,11 @@ function renderMobileProjectHtml(project) {
     return `<div class="${marginClass}" style="aspect-ratio: ${aspect};"><img class="_lz"${fitStyle} src="data:," data-src="${src}" alt="${alt}"></div>`;
   }).join('');
 
-  const nextSlug = project.next_slug ? project.next_slug.replace(/^\/+/, '') : 'gucci';
+  const nextSlug = project.next_slug ? project.next_slug.replace(/^\/+/, '') : 'intershop_guardian';
   const heroFit = project.hero_fit || 'contain';
   const bgSize = heroFit === 'cover' ? 'cover' : '100% auto';
-  let heroImg = project.hero_tex || project.home_tex || `/static/media/m/work/${project.slug}/hero.jpg?1`;
+  const s0 = project.sections && project.sections[0] ? (project.sections[0].large ? project.sections[0].large.src : project.sections[0].src || (project.sections[0].cols ? project.sections[0].cols[0].src : '')) : '';
+  let heroImg = project.hero_tex || project.home_tex || s0 || '';
   if (heroImg && !heroImg.startsWith('http://') && !heroImg.startsWith('https://') && !heroImg.startsWith('//') && !heroImg.startsWith('data:')) {
     if (!/\.(jpg|jpeg|png|webp|avif)/i.test(heroImg)) {
       heroImg += '.jpg';

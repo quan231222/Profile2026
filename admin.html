@@ -1015,9 +1015,9 @@
             <div style="display:flex;gap:12px;align-items:flex-start;">
               <img id="preview-proj-hero" src="" alt="Hero Preview" 
                    style="width:130px;height:85px;object-fit:contain;background:#0b0b0e;border:1px solid var(--border);border-radius:6px;flex-shrink:0;" 
-                   onerror="this.src='/static/media/d/work/gucci/hero.jpg'">
+                   onerror="this.src=window.DEFAULT_PLACEHOLDER">
               <div style="flex:1;">
-                <input type="text" id="proj-hero-tex" placeholder="Dán link ảnh CDN (https://...) hoặc /static/media/..." 
+                <input type="text" id="proj-hero-tex" placeholder="Dán link ảnh CDN (https://...)" 
                        style="font-size:0.85rem;padding:8px 10px;" 
                        oninput="updateTexPreview('hero', this.value)">
                 <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
@@ -1054,9 +1054,9 @@
             <div style="display:flex;gap:12px;align-items:flex-start;">
               <img id="preview-proj-home" src="" alt="Home Preview" 
                    style="width:130px;height:85px;object-fit:contain;background:#0b0b0e;border:1px solid var(--border);border-radius:6px;flex-shrink:0;" 
-                   onerror="this.src='/static/media/d/work/gucci/home.jpg'">
+                   onerror="this.src=window.DEFAULT_PLACEHOLDER">
               <div style="flex:1;">
-                <input type="text" id="proj-home-tex" placeholder="Dán link ảnh CDN (https://...) hoặc /static/media/..." 
+                <input type="text" id="proj-home-tex" placeholder="Dán link ảnh CDN (https://...)" 
                        style="font-size:0.85rem;padding:8px 10px;" 
                        oninput="updateTexPreview('home', this.value)">
                 <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
@@ -1118,6 +1118,8 @@
   <div id="toast"></div>
 
   <script>
+    const DEFAULT_PLACEHOLDER = "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%20fill%3D%22%2318181b%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%23555%22%20font-size%3D%2210%22%3ENo%20Image%3C%2Ftext%3E%3C%2Fsvg%3E";
+    window.DEFAULT_PLACEHOLDER = DEFAULT_PLACEHOLDER;
     let currentAboutData = null;
     let currentProjects = [];
     let editingProject = null;
@@ -1486,10 +1488,10 @@
         if (coverSrc && !coverSrc.startsWith('http://') && !coverSrc.startsWith('https://') && !coverSrc.startsWith('//') && !coverSrc.startsWith('data:')) {
           if (!/\.(jpg|jpeg|png|webp|avif)$/i.test(coverSrc)) coverSrc += '.jpg';
         }
-        if (!coverSrc) coverSrc = '/static/media/d/work/gucci/home.jpg';
+        if (!coverSrc) coverSrc = DEFAULT_PLACEHOLDER;
         const secCount = (p.sections || []).length;
         card.innerHTML = `
-          <img class="project-card-cover" src="${coverSrc}" alt="${p.title}" onerror="this.src='/static/media/d/work/gucci/home.jpg'" onclick="editProject('${p.slug}')" style="cursor:pointer;" title="Nhấp vào ảnh để chỉnh sửa dự án">
+          <img class="project-card-cover" src="${coverSrc}" alt="${p.title}" onerror="this.src=DEFAULT_PLACEHOLDER" onclick="editProject('${p.slug}')" style="cursor:pointer;" title="Nhấp vào ảnh để chỉnh sửa dự án">
           <div class="project-card-body">
             <h3 class="project-card-title">${p.title}</h3>
             <div class="project-card-meta">#${p.order_index} • /${p.slug} • ${secCount} ảnh</div>
@@ -1598,7 +1600,7 @@
       const elId = type === 'hero' ? 'preview-proj-hero' : 'preview-proj-home';
       const imgEl = document.getElementById(elId);
       if (imgEl) {
-        imgEl.src = src || (type === 'hero' ? '/static/media/d/work/gucci/hero.jpg' : '/static/media/d/work/gucci/home.jpg');
+        imgEl.src = src || DEFAULT_PLACEHOLDER;
       }
       if (editingProject) {
         if (type === 'hero') editingProject.hero_tex = (val || '').trim();
@@ -1866,7 +1868,7 @@
                           <video src="${cSrc}" autoplay muted loop playsinline onclick="window.open('${cSrc}', '_blank')" style="width:100%;height:100%;object-fit:${cFit};cursor:pointer;"></video>
                           <span style="position:absolute;top:2px;left:2px;font-size:0.58rem;background:#0284c7;color:#fff;padding:1px 3px;border-radius:2px;font-weight:700;">VID</span>
                         ` : `
-                          <img src="${cSrc}" alt="Col #${cIdx + 1}" onerror="this.src='/static/media/d/work/gucci/section/small/G0.jpg'" onclick="window.open('${cSrc}', '_blank')" style="width:100%;height:100%;object-fit:${cFit};cursor:pointer;">
+                          <img src="${cSrc}" alt="Col #${cIdx + 1}" onerror="this.src=DEFAULT_PLACEHOLDER" onclick="window.open('${cSrc}', '_blank')" style="width:100%;height:100%;object-fit:${cFit};cursor:pointer;">
                         `}
                         <span style="position:absolute;bottom:2px;right:2px;font-size:0.62rem;background:rgba(0,0,0,0.8);padding:1px 4px;border-radius:2px;color:#cbd5e1;">${cAspect}</span>
                       </div>
@@ -1948,7 +1950,7 @@
               <video class="gallery-card-thumb" src="${src}" autoplay muted loop playsinline onclick="window.open('${src}', '_blank')" style="width:100%;height:100%;object-fit:${fit};display:block;cursor:pointer;" title="Nhấp để mở video gốc"></video>
               <span style="position:absolute;top:4px;left:4px;font-size:0.62rem;background:#0284c7;color:#fff;padding:1px 4px;border-radius:3px;font-weight:700;">VIDEO</span>
             ` : `
-              <img class="gallery-card-thumb" src="${src}" alt="Preview #${idx + 1}" onerror="this.src='/static/media/d/work/gucci/section/small/G0.jpg'" onclick="window.open('${src}', '_blank')" style="width:100%;height:100%;object-fit:${fit};cursor:pointer;" title="Nhấp để xem ảnh gốc">
+              <img class="gallery-card-thumb" src="${src}" alt="Preview #${idx + 1}" onerror="this.src=DEFAULT_PLACEHOLDER" onclick="window.open('${src}', '_blank')" style="width:100%;height:100%;object-fit:${fit};cursor:pointer;" title="Nhấp để xem ảnh gốc">
             `}
             <span style="position:absolute;bottom:4px;right:4px;font-size:0.68rem;background:rgba(0,0,0,0.75);padding:1px 5px;border-radius:3px;color:${isVid ? '#38bdf8' : '#cbd5e1'};">${aspect}</span>
           </div>
@@ -2312,7 +2314,7 @@
       editingProject.sections.push({
         large: {
           type: isVid ? 'video' : 'image',
-          src: isVid ? '' : '/static/media/d/work/gucci/section/large/G0.jpg',
+          src: '',
           aspect: isVid ? '16/9' : '1800/1010',
           fit: 'contain',
           bg: '#141414',
@@ -2321,7 +2323,7 @@
         },
         small: {
           type: isVid ? 'video' : 'image',
-          src: isVid ? '' : '/static/media/d/work/gucci/section/small/G0.jpg',
+          src: '',
           aspect: '120/67',
           fit: 'contain',
           bg: '#141414',

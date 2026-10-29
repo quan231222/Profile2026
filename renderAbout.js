@@ -255,7 +255,6 @@ function renderMobileAboutHtml(data) {
     `${awardSectionM}` +
     `${clientSectionM}` +
     `${creditSectionM}` +
-    `<div id="a-img" class="a-mtxl" style="aspect-ratio: 856/1150;"><img class="_lz" src="data:," data-src="/static/media/m/about/cami.jpg?1" alt="Portrait" width="856" height="1150"></div>` +
     `<footer class="footer wrap">` +
       `<div class="footer-title">Profile 2026<br>Portfolio</div>` +
       `<ul class="footer-list">` +
