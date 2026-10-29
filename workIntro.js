@@ -65,6 +65,14 @@ function getAllProjectImages(projects) {
   return Array.from(candidates);
 }
 
+function getIntroThumbnailPath(url) {
+  if (!url || typeof url !== 'string') return '';
+  if (url.includes('res.cloudinary.com') && url.includes('/upload/')) {
+    return url.replace(/\/upload\/(?:(?![vV]\d+\/)[^/]+\/)?/, '/upload/w_350,c_scale,f_webp,q_auto/');
+  }
+  return url;
+}
+
 function getRandomIntroTextures(projects, count = 25) {
   const allImages = getAllProjectImages(projects);
   if (allImages.length === 0) {
@@ -81,7 +89,7 @@ function getRandomIntroTextures(projects, count = 25) {
   const result = [];
   while (result.length < count) {
     for (const img of shuffled) {
-      result.push(img);
+      result.push(getIntroThumbnailPath(img));
       if (result.length === count) break;
     }
   }
@@ -133,6 +141,7 @@ function renderMobileHomeHtml(projects) {
 
 module.exports = {
   cleanTexturePath,
+  getIntroThumbnailPath,
   getAllProjectImages,
   getRandomIntroTextures,
   getRandomizedProjects,
