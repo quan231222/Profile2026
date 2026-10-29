@@ -333,7 +333,8 @@ const server = http.createServer((req, res) => {
             payload.data[projKey] = {
               preload: true,
               texL: 2,
-              tex: [heroClean, nextHomeClean]
+              tex: [heroClean, nextHomeClean],
+              heroFit: proj.hero_fit || 'contain'
             };
           }
 

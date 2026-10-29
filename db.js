@@ -73,6 +73,7 @@ function initDb() {
       team_name TEXT DEFAULT '',
       home_tex TEXT NOT NULL,
       hero_tex TEXT NOT NULL,
+      hero_fit TEXT DEFAULT 'contain',
       next_slug TEXT NOT NULL,
       next_title TEXT NOT NULL,
       order_index INTEGER NOT NULL DEFAULT 1,
@@ -80,6 +81,10 @@ function initDb() {
       sections TEXT NOT NULL
     );
   `);
+
+  try {
+    db.exec("ALTER TABLE projects ADD COLUMN hero_fit TEXT DEFAULT 'contain'");
+  } catch (e) {}
 
   // 1. Seed About Hero if empty
   const heroCheck = db.prepare('SELECT COUNT(*) as count FROM about_hero').get();
@@ -382,6 +387,7 @@ function updateProject(oldSlug, data) {
 
   const homeTex = data.home_tex || existingProj.home_tex || '/static/media/d/work/gucci/home';
   const heroTex = data.hero_tex || existingProj.hero_tex || homeTex;
+  const heroFit = data.hero_fit || existingProj.hero_fit || 'contain';
   const h1Lines = Array.isArray(data.h1_lines) ? data.h1_lines : existingProj.h1_lines;
   const sections = Array.isArray(data.sections) ? data.sections : existingProj.sections;
 
@@ -398,6 +404,7 @@ function updateProject(oldSlug, data) {
       team_name = ?,
       home_tex = ?,
       hero_tex = ?,
+      hero_fit = ?,
       next_slug = ?,
       next_title = ?,
       order_index = ?,
@@ -414,6 +421,7 @@ function updateProject(oldSlug, data) {
     data.team_name || '',
     homeTex,
     heroTex,
+    heroFit,
     data.next_slug || '',
     data.next_title || '',
     data.order_index !== undefined ? Number(data.order_index) : existingProj.order_index,
@@ -451,14 +459,15 @@ function createProject(data) {
 
   const homeTex = data.home_tex || '/static/media/d/work/gucci/home';
   const heroTex = data.hero_tex || homeTex;
+  const heroFit = data.hero_fit || 'contain';
   const h1Lines = Array.isArray(data.h1_lines) ? data.h1_lines : (data.title ? [data.title] : ['New Project']);
   const sections = Array.isArray(data.sections) ? data.sections : [];
 
   db.prepare(`
     INSERT INTO projects (
       slug, title, h1_lines, role, description, team_prefix, team_name,
-      home_tex, hero_tex, next_slug, next_title, order_index, is_visible, sections
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      home_tex, hero_tex, hero_fit, next_slug, next_title, order_index, is_visible, sections
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).run(
     slug,
     data.title || 'New Project',
@@ -469,6 +478,7 @@ function createProject(data) {
     data.team_name || '',
     homeTex,
     heroTex,
+    heroFit,
     data.next_slug || 'gucci',
     data.next_title || 'Next Project',
     orderIndex,

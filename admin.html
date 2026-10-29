@@ -1032,6 +1032,13 @@
                     Lấy từ ảnh #1
                   </button>
                 </div>
+                <div style="display:flex;align-items:center;gap:10px;margin-top:10px;background:rgba(255,255,255,0.02);padding:8px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.06);">
+                  <label style="font-size:0.8rem;color:var(--text-dim);margin:0;white-space:nowrap;">📐 Chế độ hiển thị:</label>
+                  <select id="proj-hero-fit" style="flex:1;font-size:0.8rem;padding:6px 10px;background:rgba(0,0,0,0.4);border:1px solid var(--border);border-radius:6px;color:#fff;cursor:pointer;">
+                    <option value="contain">Hiển thị trọn chiều ngang (Fit Width / Contain) — Khuyên dùng cho Logo/Banner</option>
+                    <option value="cover">Phủ kín toàn màn hình (Cover) — Dành cho ảnh chụp 16:9</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
@@ -1536,6 +1543,7 @@
 
       // Reset Hero & Home textures
       document.getElementById('proj-hero-tex').value = '';
+      document.getElementById('proj-hero-fit').value = 'contain';
       updateTexPreview('hero', '');
       document.getElementById('proj-home-tex').value = '';
       updateTexPreview('home', '');
@@ -1573,6 +1581,7 @@
       const heroVal = editingProject.hero_tex || '';
       const homeVal = editingProject.home_tex || '';
       document.getElementById('proj-hero-tex').value = heroVal;
+      document.getElementById('proj-hero-fit').value = editingProject.hero_fit || 'contain';
       updateTexPreview('hero', heroVal);
       document.getElementById('proj-home-tex').value = homeVal;
       updateTexPreview('home', homeVal);
@@ -2459,8 +2468,10 @@
       // Hero & Home textures
       const heroTexVal = document.getElementById('proj-hero-tex').value.trim();
       const homeTexVal = document.getElementById('proj-home-tex').value.trim();
+      const heroFitVal = (document.getElementById('proj-hero-fit').value || 'contain').trim();
       editingProject.hero_tex = heroTexVal;
       editingProject.home_tex = homeTexVal;
+      editingProject.hero_fit = heroFitVal;
       
       const h1Lines = document.getElementById('proj-h1').value.split('\n').map(l => l.trim()).filter(Boolean);
       editingProject.h1_lines = h1Lines.length > 0 ? h1Lines : [title];

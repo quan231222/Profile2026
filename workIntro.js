@@ -14,9 +14,8 @@ function cleanTexturePath(p) {
   if (!p || typeof p !== 'string') return '';
   let clean = p.trim();
   if (clean.startsWith('http://') || clean.startsWith('https://') || clean.startsWith('//')) {
-    if (clean.includes('res.cloudinary.com') && clean.includes('/upload/') && !clean.includes('/upload/w_')) {
-      clean = clean.replace('/upload/', '/upload/w_800,c_scale,q_auto/');
-    }
+    // Strip accidental downscaling if present to guarantee maximum native resolution
+    clean = clean.replace('/upload/w_800,c_scale,q_auto/', '/upload/');
     return clean;
   }
   clean = clean.split('?')[0].trim();
