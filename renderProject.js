@@ -16,6 +16,16 @@ function isVideo(src, item = {}) {
   return false;
 }
 
+function optimizeImageSrc(src) {
+  if (!src || typeof src !== 'string') return src || '';
+  if (src.includes('res.cloudinary.com') && src.includes('/upload/')) {
+    if (!src.includes('/upload/f_') && !src.includes('/upload/w_') && !src.includes('/upload/c_')) {
+      return src.replace('/upload/', '/upload/f_webp,q_auto/');
+    }
+  }
+  return src;
+}
+
 function renderVideoElementHtml(src, aspect, bg, fit, alt = '', poster = '') {
   const posterAttr = poster ? ` poster="${escapeHtml(poster)}"` : '';
   const fitVal = fit === 'contain' ? 'contain' : (fit === 'cover' ? 'cover' : 'contain');
@@ -71,13 +81,15 @@ function renderDesktopProjectHtml(project, totalProjects = 8) {
       const colItemsHtml = cols.map(c => {
         const aspect = c.aspect || '1/1';
         const bg = c.bg || '#141414';
-        const src = c.src || '';
+        const rawSrc = c.src || '';
+        const isVid = isVideo(rawSrc, c);
+        const src = isVid ? rawSrc : optimizeImageSrc(rawSrc);
         const alt = escapeHtml(c.alt || project.title || '');
         const fit = c.fit || 'contain';
         const fitStyle = fit === 'contain' ? 'style="object-fit: contain;" ' : 'style="object-fit: cover;" ';
-        const poster = c.poster || '';
+        const poster = optimizeImageSrc(c.poster || '');
 
-        if (isVideo(src, c)) {
+        if (isVid) {
           return `<div class="w-s-col" style="aspect-ratio: ${aspect};"><div style="background-color: ${bg};"></div>${renderVideoElementHtml(src, aspect, bg, fit, alt, poster)}</div>`;
         }
         return `<div class="w-s-col" style="aspect-ratio: ${aspect};"><div style="background-color: ${bg};"></div><img class="_lz" ${fitStyle}src="data:," data-src="${src}" alt="${alt}"></div>`;
@@ -91,13 +103,15 @@ function renderDesktopProjectHtml(project, totalProjects = 8) {
     const classAttr = l.class ? ` class="${escapeHtml(l.class)}"` : defaultClass;
     const aspect = l.aspect || '1800/1010';
     const bg = l.bg || '#141414';
-    const src = l.src || (typeof sec === 'string' ? sec : '');
+    const rawSrc = l.src || (typeof sec === 'string' ? sec : '');
+    const isVid = isVideo(rawSrc, l);
+    const src = isVid ? rawSrc : optimizeImageSrc(rawSrc);
     const alt = escapeHtml(l.alt || project.title || '');
     const fit = l.fit || 'contain';
     const fitStyle = fit === 'contain' ? 'style="object-fit: contain;" ' : '';
-    const poster = l.poster || sec.poster || '';
+    const poster = optimizeImageSrc(l.poster || sec.poster || '');
 
-    if (isVideo(src, l)) {
+    if (isVid) {
       return `<div ${classAttr} style="aspect-ratio: ${aspect};"><div style="background-color: ${bg};"></div>${renderVideoElementHtml(src, aspect, bg, fit, alt, poster)}</div>`;
     }
 

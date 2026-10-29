@@ -16,11 +16,12 @@ function cleanTexturePath(p) {
   if (clean.startsWith('http://') || clean.startsWith('https://') || clean.startsWith('//')) {
     // Clean old aggressive w_800 degradation if present
     clean = clean.replace('/upload/w_800,c_scale,q_auto/', '/upload/');
-    // For Cloudinary images, use c_limit,w_2560,q_auto:
-    // - Limits ultra-large (4K/8K) images to safe 2560px with high-quality anti-aliasing (prevents WebGL GPU texture overflow and jagged aliasing)
-    // - Never upscales smaller images (c_limit keeps exact original dimensions if <= 2560px)
-    if (clean.includes('res.cloudinary.com') && clean.includes('/upload/') && !clean.includes('/upload/c_limit') && !clean.includes('/upload/w_')) {
-      clean = clean.replace('/upload/', '/upload/c_limit,w_2560,q_auto/');
+    // Automatically convert Cloudinary images to ultra-fast native WebP (f_webp,q_auto)
+    // and protect GPUs with safe limit (c_limit,w_2560) without downscaling smaller images
+    if (clean.includes('res.cloudinary.com') && clean.includes('/upload/')) {
+      if (!clean.includes('/upload/c_limit') && !clean.includes('/upload/w_') && !clean.includes('/upload/f_')) {
+        clean = clean.replace('/upload/', '/upload/c_limit,w_2560,f_webp,q_auto/');
+      }
     }
     return clean;
   }

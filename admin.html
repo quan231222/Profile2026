@@ -1626,20 +1626,20 @@
     async function handleHeroUpload(event) {
       const file = event.target.files && event.target.files[0];
       if (!file || !editingProject) return;
-      showToast('Đang tải ảnh mở đầu (hero)...');
+      showToast('Đang tối ưu & tải ảnh mở đầu (hero)...');
       try {
-        const { base64 } = await readFileAndMetadata(file);
+        const { base64, name: newName } = await readFileAndMetadata(file);
         const res = await fetch('/api/upload', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ data: base64, name: 'hero_' + file.name })
+          body: JSON.stringify({ data: base64, name: 'hero_' + (newName || file.name) })
         });
         const json = await res.json();
         if (json.success && json.url) {
           editingProject.hero_tex = json.url;
           document.getElementById('proj-hero-tex').value = json.url;
           updateTexPreview('hero', json.url);
-          showToast('✅ Đã tải ảnh mở đầu dự án thành công!');
+          showToast('✅ Đã tải & chuyển đổi WebP thành công!');
         } else {
           showToast('Lỗi khi tải ảnh hero: ' + (json.error || ''), 'error');
         }
@@ -1652,20 +1652,20 @@
     async function handleHomeUpload(event) {
       const file = event.target.files && event.target.files[0];
       if (!file || !editingProject) return;
-      showToast('Đang tải ảnh bìa trang chủ (home)...');
+      showToast('Đang tối ưu & tải ảnh bìa (home)...');
       try {
-        const { base64 } = await readFileAndMetadata(file);
+        const { base64, name: newName } = await readFileAndMetadata(file);
         const res = await fetch('/api/upload', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ data: base64, name: 'home_' + file.name })
+          body: JSON.stringify({ data: base64, name: 'home_' + (newName || file.name) })
         });
         const json = await res.json();
         if (json.success && json.url) {
           editingProject.home_tex = json.url;
           document.getElementById('proj-home-tex').value = json.url;
           updateTexPreview('home', json.url);
-          showToast('✅ Đã tải ảnh bìa trang chủ thành công!');
+          showToast('✅ Đã tải & chuyển đổi WebP thành công!');
         } else {
           showToast('Lỗi khi tải ảnh bìa: ' + (json.error || ''), 'error');
         }
@@ -2350,14 +2350,14 @@
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         try {
-          const { base64, aspect, dominantColor, isVideo: isFileVid } = await readFileAndMetadata(file);
+          const { base64, aspect, dominantColor, isVideo: isFileVid, name: newName } = await readFileAndMetadata(file);
 
           const res = await fetch('/api/upload', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               data: base64,
-              name: file.name
+              name: newName || file.name
             })
           });
 
@@ -2402,17 +2402,17 @@
         const isVid = file.type.startsWith('video/') || /\.(mp4|webm|mov|ogg|m4v)$/i.test(file.name);
         const reader = new FileReader();
         reader.onload = e => {
-          const base64 = e.target.result;
+          const rawBase64 = e.target.result;
           if (isVid) {
             const vid = document.createElement('video');
             vid.preload = 'metadata';
             vid.onloadedmetadata = () => {
               const w = vid.videoWidth || 1920;
               const h = vid.videoHeight || 1080;
-              resolve({ base64, aspect: `${w}/${h}`, dominantColor: '#141414', isVideo: true });
+              resolve({ base64: rawBase64, aspect: `${w}/${h}`, dominantColor: '#141414', isVideo: true, name: file.name });
             };
-            vid.onerror = () => resolve({ base64, aspect: '16/9', dominantColor: '#141414', isVideo: true });
-            vid.src = base64;
+            vid.onerror = () => resolve({ base64: rawBase64, aspect: '16/9', dominantColor: '#141414', isVideo: true, name: file.name });
+            vid.src = rawBase64;
           } else {
             const img = new Image();
             img.onload = () => {
@@ -2420,7 +2420,11 @@
               const h = img.naturalHeight || 1010;
               const aspect = `${w}/${h}`;
               let dominantColor = '#1f1f1f';
+              let finalBase64 = rawBase64;
+              let finalName = file.name;
+
               try {
+                // 1. Calculate dominant color
                 const canvas = document.createElement('canvas');
                 canvas.width = 1;
                 canvas.height = 1;
@@ -2428,11 +2432,24 @@
                 ctx.drawImage(img, 0, 0, 1, 1);
                 const p = ctx.getImageData(0, 0, 1, 1).data;
                 dominantColor = "#" + ((1 << 24) + (p[0] << 16) + (p[1] << 8) + p[2]).toString(16).slice(1);
+
+                // 2. Automatically convert to WebP format for fast web delivery
+                const webpCv = document.createElement('canvas');
+                webpCv.width = w;
+                webpCv.height = h;
+                const webpCtx = webpCv.getContext('2d');
+                webpCtx.drawImage(img, 0, 0, w, h);
+                const webpData = webpCv.toDataURL('image/webp', 0.90);
+                if (webpData && webpData.startsWith('data:image/webp')) {
+                  finalBase64 = webpData;
+                  finalName = file.name.replace(/\.[^/.]+$/, "") + '.webp';
+                }
               } catch (ignore) {}
-              resolve({ base64, aspect, dominantColor, isVideo: false });
+
+              resolve({ base64: finalBase64, aspect, dominantColor, isVideo: false, name: finalName });
             };
-            img.onerror = () => resolve({ base64, aspect: '1800/1010', dominantColor: '#1a1a1a', isVideo: false });
-            img.src = base64;
+            img.onerror = () => resolve({ base64: rawBase64, aspect: '1800/1010', dominantColor: '#1a1a1a', isVideo: false, name: file.name });
+            img.src = rawBase64;
           }
         };
         reader.onerror = reject;
