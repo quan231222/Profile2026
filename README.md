@@ -26,7 +26,7 @@ npm start
 ### 2. View in Browser
 - Portfolio Home: [http://localhost:3001](http://localhost:3001)
 - About Page: [http://localhost:3001/about](http://localhost:3001/about)
-- **Admin CMS Dashboard**: [http://localhost:3001/admin](http://localhost:3001/admin)
+- **Admin CMS Dashboard**: [http://localhost:3001/wnprocontrol](http://localhost:3001/wnprocontrol)
 
 ---
 
@@ -44,7 +44,7 @@ Trang `/about` đã được liên kết trực tiếp với cơ sở dữ liệ
 3. **RESTful API** (`server.js`):
    - `GET /api/about`: Lấy toàn bộ dữ liệu hiện tại từ SQLite.
    - `POST /api/about`: Cập nhật dữ liệu vào SQLite và tự động cập nhật ngay trên trang `/about`.
-4. **Giao diện quản trị Admin CMS** (`/admin`):
+4. **Giao diện quản trị Admin CMS** (`/wnprocontrol`):
    - Quản lý trực quan toàn bộ nội dung `/about`.
    - Thêm/xoá/sửa nhanh chóng với nút "Lưu thay đổi vào DB".
 

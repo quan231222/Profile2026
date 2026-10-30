@@ -197,8 +197,8 @@ const server = http.createServer((req, res) => {
     }
   }
 
-  // --- ADMIN CMS: /admin ---
-  if (pathname === '/admin' || pathname === '/admin/') {
+  // --- ADMIN CMS: /wnprocontrol ---
+  if (pathname === '/wnprocontrol' || pathname === '/wnprocontrol/') {
     const adminPath = path.join(ROOT_DIR, 'admin.html');
     if (fs.existsSync(adminPath)) {
       const stat = fs.statSync(adminPath);
@@ -209,6 +209,13 @@ const server = http.createServer((req, res) => {
       fs.createReadStream(adminPath).pipe(res);
       return;
     }
+  }
+
+  // Explicitly deny legacy /admin access
+  if (pathname === '/admin' || pathname === '/admin/') {
+    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end('404 Not Found');
+    return;
   }
 
   // --- 1. Dynamic API request from frontend framework (R.Fetch in d.js / m.js) ---
@@ -419,7 +426,7 @@ const server = http.createServer((req, res) => {
   const route = pathname.replace(/^\/+|\/+$/g, '');
 
   // 3.1 Dynamic project HTML shell if route matches any project in database
-  if (route && route !== 'admin') {
+  if (route && route !== 'admin' && route !== 'wnprocontrol') {
     const dbProj = getProjectBySlug(route);
     if (dbProj) {
       const allDbProjects = getProjects();
@@ -472,5 +479,5 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
-  console.log(`Admin CMS available at http://localhost:${PORT}/admin`);
+  console.log(`Admin CMS available at http://localhost:${PORT}/wnprocontrol`);
 });
