@@ -8,7 +8,7 @@
   height: 100%;
   overflow: hidden;
   background-color: #141414;
-  pointer-events: auto !important;
+  pointer-events: none !important;
   user-select: none;
   -webkit-user-select: none;
   border-radius: 0;
@@ -21,143 +21,23 @@
   width: 100%;
   height: 100%;
   display: block;
-  cursor: pointer;
-  pointer-events: auto !important;
+  pointer-events: none !important;
   background: transparent;
   transition: opacity 0.4s ease;
 }
 
-/* Center Play Button Overlay */
-.w-video-center-play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: rgba(18, 18, 18, 0.72);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  cursor: pointer;
-  pointer-events: auto !important;
-  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  opacity: 0;
-  z-index: 10;
-}
-
-.w-s-video-wrapper.is-paused .w-video-center-play {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.w-video-center-play:hover {
-  transform: translate(-50%, -50%) scale(1.1);
-  background: rgba(28, 28, 28, 0.85);
-  border-color: rgba(255, 255, 255, 0.5);
-}
-
-.w-video-center-play svg {
-  width: 28px;
-  height: 28px;
-  fill: #ffffff;
-  margin-left: 3px;
-}
-
-/* Bottom Control Bar */
-.w-video-controls {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 10px 16px;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 10, 0.75) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: auto !important;
-  z-index: 10;
-}
-
-.w-s-video-wrapper:hover .w-video-controls,
-.w-s-video-wrapper.is-paused .w-video-controls,
-.w-s-video-wrapper.show-controls .w-video-controls {
-  opacity: 1;
-}
-
-/* Timeline / Progress Bar */
-.w-video-progress-wrap {
-  flex: 1;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  pointer-events: auto !important;
-}
-
-.w-video-progress-bar {
-  width: 100%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.25);
-  border-radius: 2px;
-  position: relative;
-  overflow: hidden;
-  transition: height 0.2s ease;
-}
-
-.w-video-progress-wrap:hover .w-video-progress-bar {
-  height: 6px;
-}
-
-.w-video-progress-fill {
-  height: 100%;
-  width: 0%;
-  background: #ffffff;
-  border-radius: 2px;
-  transition: width 0.08s linear;
-}
-
-/* Control Buttons */
-.w-video-btn {
-  background: transparent;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  padding: 6px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.85;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  pointer-events: auto !important;
-  box-sizing: border-box;
-}
-
-.w-video-btn:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-.w-video-btn svg {
-  width: 18px;
-  height: 18px;
-  fill: currentColor;
-}
-
+/* Hide all controls, buttons, timers and overlays */
+.w-video-center-play,
+.w-video-quick-mute,
+.w-video-controls,
+.w-video-btn,
+.w-video-progress-wrap,
 .w-video-time {
-  font-size: 11px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.75);
+  display: none !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
   letter-spacing: 0.05em;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;

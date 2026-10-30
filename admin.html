@@ -1594,13 +1594,44 @@
 
     function updateTexPreview(type, val) {
       let src = (val || '').trim();
-      if (src && !src.startsWith('http://') && !src.startsWith('https://') && !src.startsWith('//') && !src.startsWith('data:')) {
+      const isVid = isVideoUrl(src);
+      if (!isVid && src && !src.startsWith('http://') && !src.startsWith('https://') && !src.startsWith('//') && !src.startsWith('data:')) {
         if (!/\.(jpg|jpeg|png|webp|avif)$/i.test(src)) src += '.jpg';
       }
       const elId = type === 'hero' ? 'preview-proj-hero' : 'preview-proj-home';
-      const imgEl = document.getElementById(elId);
-      if (imgEl) {
-        imgEl.src = src || DEFAULT_PLACEHOLDER;
+      const el = document.getElementById(elId);
+      if (el) {
+        const parent = el.parentElement;
+        if (isVid) {
+          if (el.tagName !== 'VIDEO') {
+            const vid = document.createElement('video');
+            vid.id = elId;
+            vid.autoplay = true;
+            vid.muted = true;
+            vid.loop = true;
+            vid.playsInline = true;
+            vid.setAttribute('playsinline', '');
+            vid.setAttribute('onended', 'this.currentTime=0;this.play()');
+            vid.style.cssText = 'width:130px;height:85px;object-fit:contain;background:#0b0b0e;border:1px solid var(--border);border-radius:6px;flex-shrink:0;display:block;';
+            parent.replaceChild(vid, el);
+            vid.src = src;
+          } else {
+            el.src = src;
+            el.play().catch(function(){});
+          }
+        } else {
+          if (el.tagName !== 'IMG') {
+            const img = document.createElement('img');
+            img.id = elId;
+            img.alt = type === 'hero' ? 'Hero Preview' : 'Home Preview';
+            img.style.cssText = 'width:130px;height:85px;object-fit:contain;background:#0b0b0e;border:1px solid var(--border);border-radius:6px;flex-shrink:0;';
+            img.onerror = function() { this.src = DEFAULT_PLACEHOLDER; };
+            parent.replaceChild(img, el);
+            img.src = src || DEFAULT_PLACEHOLDER;
+          } else {
+            el.src = src || DEFAULT_PLACEHOLDER;
+          }
+        }
       }
       if (editingProject) {
         if (type === 'hero') editingProject.hero_tex = (val || '').trim();
@@ -1865,7 +1896,7 @@
                     <div style="display:flex;gap:10px;align-items:center;">
                       <div style="position:relative;background:#000;border-radius:6px;overflow:hidden;width:100px;height:65px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                         ${cIsVid ? `
-                          <video src="${cSrc}" autoplay muted loop playsinline onclick="window.open('${cSrc}', '_blank')" style="width:100%;height:100%;object-fit:${cFit};cursor:pointer;"></video>
+                          <video src="${cSrc}" autoplay muted loop playsinline onended="this.currentTime=0;this.play()" onclick="window.open('${cSrc}', '_blank')" style="width:100%;height:100%;object-fit:${cFit};cursor:pointer;"></video>
                           <span style="position:absolute;top:2px;left:2px;font-size:0.58rem;background:#0284c7;color:#fff;padding:1px 3px;border-radius:2px;font-weight:700;">VID</span>
                         ` : `
                           <img src="${cSrc}" alt="Col #${cIdx + 1}" onerror="this.src=DEFAULT_PLACEHOLDER" onclick="window.open('${cSrc}', '_blank')" style="width:100%;height:100%;object-fit:${cFit};cursor:pointer;">
@@ -1947,7 +1978,7 @@
         card.innerHTML = `
           <div style="position:relative;background:#0d0d0d;border-radius:6px;overflow:hidden;width:120px;height:75px;display:flex;align-items:center;justify-content:center;">
             ${isVid ? `
-              <video class="gallery-card-thumb" src="${src}" autoplay muted loop playsinline onclick="window.open('${src}', '_blank')" style="width:100%;height:100%;object-fit:${fit};display:block;cursor:pointer;" title="Nhấp để mở video gốc"></video>
+              <video class="gallery-card-thumb" src="${src}" autoplay muted loop playsinline onended="this.currentTime=0;this.play()" onclick="window.open('${src}', '_blank')" style="width:100%;height:100%;object-fit:${fit};display:block;cursor:pointer;" title="Nhấp để mở video gốc"></video>
               <span style="position:absolute;top:4px;left:4px;font-size:0.62rem;background:#0284c7;color:#fff;padding:1px 4px;border-radius:3px;font-weight:700;">VIDEO</span>
             ` : `
               <img class="gallery-card-thumb" src="${src}" alt="Preview #${idx + 1}" onerror="this.src=DEFAULT_PLACEHOLDER" onclick="window.open('${src}', '_blank')" style="width:100%;height:100%;object-fit:${fit};cursor:pointer;" title="Nhấp để xem ảnh gốc">
